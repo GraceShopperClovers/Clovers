@@ -5,31 +5,31 @@ const SALT_COUNT = 10
 // database functions
 
 // user functions
-async function createUser({ username, password }) {
+async function createUser({ email, password }) {
   const hashedPassword = await bcrypt.hash(password, SALT_COUNT)
   try {
     const {
       rows: [user],
     } = await client.query(
       `
-      INSERT INTO users(username, password) VALUES ($1, $2)
-      ON CONFLICT (username) DO NOTHING 
-      RETURNING id, username
+      INSERT INTO users(email, password) VALUES ($1, $2)
+      ON CONFLICT (email) DO NOTHING 
+      RETURNING userid, email
     `,
-      [username, hashedPassword]
+      [email, hashedPassword]
     )
     return user
   } catch (error) {
     throw error
   }
 }
-async function getUser({ username, password }) {
-  if (!username || !password) {
+async function getUser({ email, password }) {
+  if (!email || !password) {
     return
   }
 
   try {
-    const user = await getUserByUsername(username)
+    const user = await getUserByEmail(email)
     if (!user) return
     const hashedPassword = user.password
     const passwordsMatch = await bcrypt.compare(password, hashedPassword)
@@ -50,7 +50,7 @@ async function getUserById(userId) {
       `
       SELECT *
       FROM users
-      WHERE id = $1;
+      WHERE userid = $1;
     `,
       [userId]
     )
@@ -64,16 +64,16 @@ async function getUserById(userId) {
     throw error
   }
 }
-async function getUserByUsername(userName) {
+async function getUserByEmail(email) {
   // first get the user
   try {
     const { rows } = await client.query(
       `
       SELECT *
       FROM users
-      WHERE username = $1;
+      WHERE email = $1;
     `,
-      [userName]
+      [email]
     )
     // if it doesn't exist, return null
     if (!rows || !rows.length) return null
@@ -90,5 +90,5 @@ module.exports = {
   createUser,
   getUser,
   getUserById,
-  getUserByUsername,
+  getUserByEmail,
 }
