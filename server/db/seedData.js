@@ -110,7 +110,7 @@ async function createInitialUsers() {
 }
 
 //create test product data
-async function createIntitualProducts(){
+async function createIntitialProducts(){
   console.log('starting to create products')
   try{
     const prodsToCreate = [
@@ -157,7 +157,7 @@ async function rebuildDB() {
     await dropTables()
     await createTables()
     await createInitialUsers()
-    await createIntitualProducts()
+    await createIntitialProducts()
 
     // create other data
   } catch (error) {

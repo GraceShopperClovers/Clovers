@@ -8,10 +8,10 @@ async function createProducts({ productname, description, price, imageurl }) {
         `
         INSERT INTO products(productname, description, price, imageurl) VALUES ($1, $2, $3, $4)
         
-        
+        RETURNING *
       `,
         [productname, description, price, imageurl]
-      );
+      )
       return product
     } catch (error) {
       throw error
