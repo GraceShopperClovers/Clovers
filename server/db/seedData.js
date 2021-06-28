@@ -9,7 +9,10 @@ async function dropTables() {
   //  Add more tables as you need them
   try {
     await client.query(`
-    DROP TABLE IF EXISTS users;
+    DROP TABLE IF EXISTS users cascades;
+    DROP TABLE IF EXISTS products cascades;
+    DROP TABLE IF EXISTS orders cascades;
+    DROP TABLE IF EXISTS order_products cascades;
   `)
   } catch (error) {
     throw error
@@ -24,12 +27,54 @@ async function createTables() {
     // User's Table
     await client.query(`
       CREATE TABLE users(
-        id  SERIAL PRIMARY KEY, 
-        username VARCHAR(255) UNIQUE NOT NULL, 
+        userid  SERIAL PRIMARY KEY, 
+        email VARCHAR(255) UNIQUE NOT NULL, 
         password VARCHAR(255) NOT NULL
+
       );
     `)
 
+    //Product Table
+    await client.query(`
+      CREATE TABLE products(
+        sku SERIAL PRIMARY KEY, 
+        productName VARCHAR(255) UNIQUE NOT NULL, 
+        description VARCHAR(255) NOT NULL,
+        price INTEGER NOT NULL,
+        imageurl VARCHAR(255) NOT NULL
+      );
+    `)
+
+    //Orders table
+    await client.query(`
+      CREATE TABLE orders(
+        ordernum SERIAL PRIMARY KEY, 
+        "userid" references users(userid)
+      );
+    `)
+
+    //order_products table
+    await client.query(`
+      CREATE TABLE order_products(
+        "ordernum" references orders(ordernum), 
+        "sku" references products(sku),
+        "price" references products(price),
+        qunatity INTEGER NOT NULL,
+        producttotal INTEGER NOT NULL,
+        UNIQUE("ordernum","sku")
+      );
+    `)
+
+    // await client.query(`
+    //   CREATE TABLE ordered(
+    //     "ordernum" references order_product(ordernum), 
+    //     "sku" references products(sku),
+    //     "price" references products(price),
+    //     qunatity INTEGER NOT NULL,
+    //     producttotal INTEGER NOT NULL
+    //   );
+    // `)
+      
     // Add tables as you need them (A good place to start is Products and Orders
     // You may also need an extra table that links products and orders together (HINT* Many-To-Many)
 
