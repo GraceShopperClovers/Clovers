@@ -1,6 +1,9 @@
 // require in the database adapter functions as you write them (createUser, createActivity...)
 const { createUser } = require('./')
 const { createProducts } = require('./products')
+const { createOrders } = require('./orders')
+const { createOrderProduct } = require('./orderproducts')
+
 const client = require('./client')
 
 async function dropTables() {
@@ -49,7 +52,8 @@ async function createTables() {
     //Orders table
     await client.query(`
       CREATE TABLE orders(
-        ordernum SERIAL PRIMARY KEY, 
+        ordernum SERIAL PRIMARY KEY,
+        ispublic BOOLEAN default TRUE, 
         "orderuserid" INTEGER REFERENCES users(userid)
       );
     `)
@@ -59,9 +63,7 @@ async function createTables() {
       CREATE TABLE order_products(
         "ordernum" INTEGER REFERENCES orders(ordernum), 
         "sku" INTEGER REFERENCES products(sku),
-        
         quantity INTEGER NOT NULL,
-        producttotal INTEGER NOT NULL,
         UNIQUE("ordernum","sku")
       );
     `)
@@ -151,6 +153,57 @@ async function createIntitialProducts(){
     
 }
 
+//Create intial orders for testing 
+
+async function createInitialOrders(){
+  console.log('starting to create orders')
+  try {
+    const ordersToCreate = [
+      {orderuserid:"1"},
+      {orderuserid:"2"},
+      {orderuserid:"3"}
+
+    ]
+    const orders = await Promise.all(ordersToCreate.map(createOrders))
+    
+    
+    console.log('Orders created:')
+    console.log(orders)
+    console.log('Finished creating Orders!')
+    
+  } catch (error) {
+    console.error('Error creating orders!')
+    throw error
+  }
+}
+
+//create initial order products table for testing
+
+async function createInitialOrderProducts(){
+  console.log('starting to create orders')
+  try {
+    const orderProdsCreated =[
+      {ordernum: "1", sku: "12", quantity: "2"},
+      {ordernum: "1", sku: "10", quantity: "1"},
+      {ordernum: "1", sku: "2", quantity: "3"},
+      {ordernum: "2", sku: "12", quantity: "2"},
+      {ordernum: "2", sku: "10", quantity: "1"},
+      {ordernum: "2", sku: "2", quantity: "3"},
+      {ordernum: "3", sku: "12", quantity: "2"},
+      {ordernum: "3", sku: "10", quantity: "1"},
+      {ordernum: "3", sku: "2", quantity: "3"}
+    ]
+    const orderproducts = await Promise.all(orderProdsCreated.map(createOrderProduct))
+    console.log('OrdersProducts created:')
+    console.log(orderproducts)
+    console.log('Finished creating OrderProducts!')
+    
+  } catch (error) {
+    console.error('Error creating orderProducts!')
+    throw error
+  }
+}
+
 async function rebuildDB() {
   try {
     client.connect()
@@ -158,6 +211,8 @@ async function rebuildDB() {
     await createTables()
     await createInitialUsers()
     await createIntitialProducts()
+    await createInitialOrders()
+    await createInitialOrderProducts()
 
     // create other data
   } catch (error) {
