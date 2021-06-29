@@ -35,46 +35,30 @@ async function createTables() {
       );
     `)
 
-    //Product Table
-    await client.query(`
-      CREATE TABLE products(
-        sku SERIAL PRIMARY KEY UNIQUE NOT NULL, 
-        productname VARCHAR(255) UNIQUE NOT NULL, 
-        description TEXT NOT NULL,
-        price INTEGER NOT NULL,
-        imageurl TEXT NOT NULL
-      );
-    `)
+        //Product Table, prders, order_products,
+        await client.query(`
+        CREATE TABLE products(
+          sku SERIAL PRIMARY KEY UNIQUE NOT NULL, 
+          productname VARCHAR(255) UNIQUE NOT NULL, 
+          description TEXT NOT NULL,
+          price INTEGER NOT NULL,
+          imageurl TEXT NOT NULL
+        );
+      
+        CREATE TABLE orders(
+          ordernum SERIAL PRIMARY KEY, 
+          "orderuserid" INTEGER REFERENCES users(userid)
+        );
 
-    //Orders table
-    await client.query(`
-      CREATE TABLE orders(
-        ordernum SERIAL PRIMARY KEY, 
-        "orderuserid" INTEGER REFERENCES users(userid)
-      );
-    `)
-
-    //order_products table
-    await client.query(`
-      CREATE TABLE order_products(
-        "ordernum" INTEGER REFERENCES orders(ordernum), 
-        "sku" INTEGER REFERENCES products(sku),
-        
-        quantity INTEGER NOT NULL,
-        producttotal INTEGER NOT NULL,
-        UNIQUE("ordernum","sku")
-      );
-    `)
-
-    // await client.query(`
-    //   CREATE TABLE ordered(
-    //     "ordernum" references order_product(ordernum), 
-    //     "sku" references products(sku),
-    //     "price" references products(price),
-    //     qunatity INTEGER NOT NULL,
-    //     producttotal INTEGER NOT NULL
-    //   );
-    // `)
+        CREATE TABLE order_products(
+          "ordernum" INTEGER REFERENCES orders(ordernum), 
+          "sku" INTEGER REFERENCES products(sku),
+          
+          quantity INTEGER NOT NULL,
+          producttotal INTEGER NOT NULL,
+          UNIQUE("ordernum","sku")
+        );
+      `)
       
     // Add tables as you need them (A good place to start is Products and Orders
     // You may also need an extra table that links products and orders together (HINT* Many-To-Many)
@@ -138,7 +122,8 @@ async function createIntitualProducts(){
       price:'250',imageurl:'https://beaniepedia.com/beanies/files/2020/09/twigs-380x380.jpg'},
       {productname:'Seaweed the Otter',description:'Seaweed is a dark brown sea otter with a lighter brown muzzle. She has black button eyes and a tiny black nose. She carries a piece of green seaweed in her paws.',
       price:'7',imageurl:' https://beaniepedia.com/beanies/files/2021/03/seaweed-380x380.jpeg'},
-    ]
+  ]
+    // console.log('Testing input:', prodsToCreate)
     const products = await Promise.all(prodsToCreate.map(createProducts))
 
     console.log('Products created:')
