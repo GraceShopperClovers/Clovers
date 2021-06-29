@@ -38,6 +38,7 @@ async function createTables() {
       );
     `)
 
+
     //Product Table
     await client.query(`
       CREATE TABLE products(
@@ -77,6 +78,7 @@ async function createTables() {
     //     producttotal INTEGER NOT NULL
     //   );
     // `)
+
       
     // Add tables as you need them (A good place to start is Products and Orders
     // You may also need an extra table that links products and orders together (HINT* Many-To-Many)
@@ -140,7 +142,8 @@ async function createIntitialProducts(){
       price:'250',imageurl:'https://beaniepedia.com/beanies/files/2020/09/twigs-380x380.jpg'},
       {productname:'Seaweed the Otter',description:'Seaweed is a dark brown sea otter with a lighter brown muzzle. She has black button eyes and a tiny black nose. She carries a piece of green seaweed in her paws.',
       price:'7',imageurl:' https://beaniepedia.com/beanies/files/2021/03/seaweed-380x380.jpeg'},
-    ]
+  ]
+    // console.log('Testing input:', prodsToCreate)
     const products = await Promise.all(prodsToCreate.map(createProducts))
 
     console.log('Products created:')
