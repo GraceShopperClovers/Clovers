@@ -18,7 +18,7 @@ function setHeaders() {
  *
  * @returns {
  *      user: {
- *          username: String,
+ *          email: String,
  *          password: String
  *      },
  *      token: JSonWebToken
@@ -38,21 +38,21 @@ export async function checkLogin() {
 /**
  *  Login
  *
- *  @param username - Name of the user
+ *  @param email - Name of the user
  *  @param password - Users' password
  *
  *  @returns {
  *      user: {
- *          username: String,
+ *          email: String,
  *          password: String
  *      },
  *      token: JSonWebToken
  *  }
  */
-export async function login(username, password) {
+export async function login(email, password) {
   try {
     const { data } = await axios.post('/api/users/login', {
-      username,
+      email,
       password,
     })
     if (data.token) {
@@ -69,21 +69,21 @@ export async function login(username, password) {
 /**
  *  Register
  *
- *  @param username - Name of the user
+ *  @param email - Name of the user
  *  @param password - Users' password
  *
  *  @returns {
  *      user: {
- *          username: String,
+ *          email: String,
  *          password: String
  *      },
  *      token: JSonWebToken
  *  }
  */
-export async function register(username, password) {
+export async function register(email, password) {
   try {
     const { data } = await axios.post('/api/users/register', {
-      username,
+      email,
       password,
     })
     if (data.token) {

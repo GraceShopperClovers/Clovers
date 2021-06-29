@@ -1,33 +1,33 @@
 const express = require('express')
 const router = express.Router()
 const jwt = require('jsonwebtoken')
-const { createUser, getUser, getUserByUsername, getUserById } = require('../db')
+const { createUser, getUser, getUserByEmail, getUserById } = require('../db')
 const SALT_COUNT = 10
 const { JWT_SECRET = 'neverTell' } = process.env
 
 // POST /api/users/login
 router.post('/login', async (req, res, next) => {
-  const { username, password } = req.body
+  const { email, password } = req.body
 
   // request must have both
-  if (!username || !password) {
+  if (!email || !password) {
     next({
       name: 'MissingCredentialsError',
-      message: 'Please supply both a username and password',
+      message: 'Please supply both a email and password',
     })
   }
 
   try {
-    const user = await getUser({ username, password })
+    const user = await getUser({ email, password })
     console.log(user)
     if (!user) {
       next({
         name: 'IncorrectCredentialsError',
-        message: 'Username or password is incorrect',
+        message: 'email or password is incorrect',
       })
     } else {
       const token = jwt.sign(
-        { id: user.id, username: user.username },
+        { id: user.id, email: user.email },
         JWT_SECRET,
         { expiresIn: '1w' }
       )
@@ -42,17 +42,17 @@ router.post('/login', async (req, res, next) => {
 // POST /api/users/register
 router.post('/register', async (req, res, next) => {
   try {
-    const { username, password } = req.body
-    const queriedUser = await getUserByUsername(username)
+    const { email, password } = req.body
+    const queriedUser = await getUserByEmail(email)
     if (queriedUser) {
       res.status(401)
       next({
         name: 'UserExistsError',
-        message: 'A user by that username already exists',
+        message: 'A user by that email already exists',
       })
     } else {
       const user = await createUser({
-        username,
+        email,
         password,
       })
       if (!user) {
@@ -62,7 +62,7 @@ router.post('/register', async (req, res, next) => {
         })
       } else {
         const token = jwt.sign(
-          { id: user.id, username: user.username },
+          { id: user.id, email: user.email },
           JWT_SECRET,
           { expiresIn: '1w' }
         )
