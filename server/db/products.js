@@ -25,6 +25,19 @@ async function createProducts({ productname, description, price, imageurl }) {
     }
   }
 
+async function getAllProducts() {
+  try {
+    const { rows } = await client.query(`
+      SELECT productname, description, price, imageurl
+      FROM products;
+    `)
+    return { rows }
+  } catch (error) {
+    throw error
+  }
+}
+
   module.exports = { 
-    createProducts
+    createProducts,
+    getAllProducts
   };
