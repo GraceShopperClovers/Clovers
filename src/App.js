@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Routes from './Routes'
-import { checkLogin } from './utils'
+import { checkLogin, getProducts } from './utils'
 
 function App() {
   const [user, setUser] = useState({})
@@ -22,5 +22,7 @@ function App() {
     </div>
   )
 }
+
+
 
 export default App
