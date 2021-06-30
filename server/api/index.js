@@ -56,4 +56,8 @@ router.use('/products', productsRouter)
 const ordersRouter = require('./orders')
 router.use('/orders', ordersRouter)
 
+// ROUTER: /api/orderproducts
+const orderProdsRouter = require('./orderproducts')
+router.use('/orderproducts', orderProdsRouter)
+
 module.exports = router
