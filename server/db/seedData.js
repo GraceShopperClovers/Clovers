@@ -1,7 +1,7 @@
 // require in the database adapter functions as you write them (createUser, createActivity...)
 const { createUser } = require('./')
 const { createProducts } = require('./products')
-const { createOrders } = require('./orders')
+const { createOrder } = require('./orders')
 const { createOrderProduct } = require('./orderproducts')
 
 const client = require('./client')
@@ -54,7 +54,7 @@ async function createTables() {
     await client.query(`
       CREATE TABLE orders(
         ordernum SERIAL PRIMARY KEY,
-        ispublic BOOLEAN default TRUE, 
+        isopen BOOLEAN default TRUE, 
         "orderuserid" INTEGER REFERENCES users(userid)
       );
     `)
@@ -164,10 +164,10 @@ async function createInitialOrders(){
     const ordersToCreate = [
       {orderuserid:"1"},
       {orderuserid:"2"},
-      {orderuserid:"3"}
-
+      {orderuserid:"3"},
+      {}
     ]
-    const orders = await Promise.all(ordersToCreate.map(createOrders))
+    const orders = await Promise.all(ordersToCreate.map(createOrder))
     
     
     console.log('Orders created:')
