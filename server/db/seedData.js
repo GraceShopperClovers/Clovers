@@ -65,20 +65,10 @@ async function createTables() {
         "ordernum" INTEGER REFERENCES orders(ordernum), 
         "sku" INTEGER REFERENCES products(sku),
         quantity INTEGER NOT NULL,
+        productprice INTEGER NOT NULL,
         UNIQUE("ordernum","sku")
       );
     `)
-
-    // await client.query(`
-    //   CREATE TABLE ordered(
-    //     "ordernum" references order_product(ordernum), 
-    //     "sku" references products(sku),
-    //     "price" references products(price),
-    //     qunatity INTEGER NOT NULL,
-    //     producttotal INTEGER NOT NULL
-    //   );
-    // `)
-
       
     // Add tables as you need them (A good place to start is Products and Orders
     // You may also need an extra table that links products and orders together (HINT* Many-To-Many)
@@ -194,7 +184,8 @@ async function createInitialOrderProducts(){
       {ordernum: "2", sku: "2", quantity: "3"},
       {ordernum: "3", sku: "12", quantity: "2"},
       {ordernum: "3", sku: "10", quantity: "1"},
-      {ordernum: "3", sku: "2", quantity: "3"}
+      {ordernum: "3", sku: "2", quantity: "3"},
+      {ordernum: "3", sku: "2"}
     ]
     const orderproducts = await Promise.all(orderProdsCreated.map(createOrderProduct))
     console.log('OrdersProducts created:')

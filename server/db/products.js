@@ -37,7 +37,23 @@ async function getAllProducts() {
   }
 }
 
+  
+  async function getProductsBySku(sku) {
+    try {
+      const {rows} = await client.query(`
+        SELECT *
+        FROM products
+        WHERE sku = $1
+      `, [sku])
+
+      return {rows}
+    } catch (error) {
+      
+    }
+  }
+
   module.exports = { 
     createProducts,
-    getAllProducts
+    getAllProducts,
+    getProductsBySku
   };
