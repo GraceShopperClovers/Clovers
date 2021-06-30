@@ -1,6 +1,6 @@
 const client = require('./client')
 
-async function createOrder(orderuserid){
+async function createOrder({orderuserid}){
     try {
         const {
             rows: [order],
@@ -11,6 +11,8 @@ async function createOrder(orderuserid){
           `,
             [orderuserid]
           )
+          // const orderNum = order.ordernum
+          // localStorage.setItem('ordernum', orderNum)
           return order
     } catch (error) {
         throw error
