@@ -104,10 +104,11 @@ function setToken(token) {
 
 export default function getProducts(){
   try{
-    const {data} = axios.get('/api/products',{
+
+    const { data } = axios.get('/api/products',{
       productname,description, price, imageurl,
     })
-    if (data){
+    if (data.rows){
       products = data.rows
       console.log(products)
     }

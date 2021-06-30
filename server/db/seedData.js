@@ -1,7 +1,7 @@
 // require in the database adapter functions as you write them (createUser, createActivity...)
 const { createUser } = require('./')
 const { createProducts } = require('./products')
-const { createOrders } = require('./orders')
+const { createOrder } = require('./orders')
 const { createOrderProduct } = require('./orderproducts')
 
 const client = require('./client')
@@ -54,7 +54,7 @@ async function createTables() {
     await client.query(`
       CREATE TABLE orders(
         ordernum SERIAL PRIMARY KEY,
-        ispublic BOOLEAN default TRUE, 
+        isopen BOOLEAN default TRUE, 
         "orderuserid" INTEGER REFERENCES users(userid)
       );
     `)
@@ -65,20 +65,10 @@ async function createTables() {
         "ordernum" INTEGER REFERENCES orders(ordernum), 
         "sku" INTEGER REFERENCES products(sku),
         quantity INTEGER NOT NULL,
+        productprice INTEGER NOT NULL,
         UNIQUE("ordernum","sku")
       );
     `)
-l
-    // await client.query(`
-    //   CREATE TABLE ordered(
-    //     "ordernum" references order_product(ordernum), 
-    //     "sku" references products(sku),
-    //     "price" references products(price),
-    //     qunatity INTEGER NOT NULL,
-    //     producttotal INTEGER NOT NULL
-    //   );
-    // `)
-
       
     // Add tables as you need them (A good place to start is Products and Orders
     // You may also need an extra table that links products and orders together (HINT* Many-To-Many)
@@ -167,7 +157,7 @@ async function createInitialOrders(){
       {orderuserid:"3"}
 
     ]
-    const orders = await Promise.all(ordersToCreate.map(createOrders))
+    const orders = await Promise.all(ordersToCreate.map(createOrder))
     
     
     console.log('Orders created:')
