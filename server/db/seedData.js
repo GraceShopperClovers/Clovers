@@ -174,7 +174,7 @@ async function createInitialOrders(){
 //create initial order products table for testing
 
 async function createInitialOrderProducts(){
-  console.log('starting to create orders')
+  console.log('starting to create ordersProducts')
   try {
     const orderProdsCreated =[
       {ordernum: "1", sku: "12", quantity: "2"},
@@ -185,10 +185,10 @@ async function createInitialOrderProducts(){
       {ordernum: "2", sku: "2", quantity: "3"},
       {ordernum: "3", sku: "12", quantity: "2"},
       {ordernum: "3", sku: "10", quantity: "1"},
-      {ordernum: "3", sku: "2", quantity: "3"},
       {ordernum: "3", sku: "2"}
       
     ]
+ 
     const orderproducts = await Promise.all(orderProdsCreated.map(createOrderProduct))
     console.log('OrdersProducts created:')
     console.log(orderproducts)

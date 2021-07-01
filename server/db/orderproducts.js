@@ -1,8 +1,12 @@
 const client = require('./client')
 const {getProductsBySku} = require('./products')
 
+console.log(require('./products'))
 async function createOrderProduct({ ordernum, sku, quantity }) {
-    try {
+  if(!quantity){
+    quantity = '1'
+  }  
+  try {
       const {rows: [products]} = await getProductsBySku(sku)
       const price = products.price
       const {
@@ -10,7 +14,7 @@ async function createOrderProduct({ ordernum, sku, quantity }) {
       } = await client.query(
         `
         INSERT INTO order_products(ordernum, sku, quantity, productprice) VALUES ($1, $2, $3, $4)
-        RETURNING *
+        RETURNING *;
       `,
         [ordernum, sku, quantity, price]
       )
@@ -37,7 +41,7 @@ async function getOrderProductsByOrderNum(ordernum){
     const {rows: orderproducts} = await client.query(`
       SELECT *
       FROM order_products
-      WHERE ordernum = $1
+      WHERE ordernum = $1;
     `, [ordernum])
 
     return orderproducts
@@ -49,8 +53,17 @@ async function getOrderProductsByOrderNum(ordernum){
 
 
 
+async function addProductsToOrder(ordernum, product) {
+  try {
+    let result = await createOrderProduct(ordernum, product.sku, quantity)
+    return result
+  } catch (error) {
+    throw error
+  }
+}
   module.exports = {
     createOrderProduct,
     getAllOrderProducts,
-    getOrderProductsByOrderNum
+    getOrderProductsByOrderNum,
+    addProductsToOrder
   };
