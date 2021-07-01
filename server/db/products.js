@@ -1,4 +1,5 @@
 const client = require('./client')
+const {createOrderProduct} = require('./orderproducts')
 
 async function createProducts({ productname, description, price, imageurl }) {
     try {
@@ -52,8 +53,18 @@ async function getAllProducts() {
     }
   }
 
+  async function addProductsToOrder(ordernum, product) {
+    try {
+      let result = await createOrderProduct(ordernum, product.sku, quantity)
+      return result
+    } catch (error) {
+      throw error
+    }
+  }
+
   module.exports = { 
     createProducts,
     getAllProducts,
-    getProductsBySku
+    getProductsBySku,
+    addProductsToOrder
   };
