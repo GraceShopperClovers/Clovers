@@ -20,13 +20,17 @@ export default function Landing() {
     .catch(error => console.error(`Error: ${error}`))
   }
   return(
-    <div>
+    <div id="prodcont">
         <DisplayProduct products = {products} />
     </div>
   )
 }
 
 function DisplayProduct(props) {
+//   function ShowDiv(productname) {
+//     document.getElementById(productname).style.display = "";
+// }
+
 
   const showProducts = (props) => {
       const {products} = props
@@ -35,11 +39,17 @@ function DisplayProduct(props) {
           return(
               products.map((product, index) => {
                   console.log(product);
+                  //let productname = product.productname
                   return(
                       <div className='products' key = {index}>
+                        <img className ="productimage" src={product.imageurl}/>
                           <h1 className="productname">{product.productname}</h1>
-                          <h2 className="price">{product.price}</h2>
-                          <img className ="productimage" src={product.imageurl}/>
+                          <h2 className="price">Price: ${product.price}</h2>
+                          {/* <button type="button" className="collapsible"  onclick={ShowDiv(productname)}>More info</button> */}
+                            {/* <div id={product.productname}> */}
+                          <h2 className="description">{product.description}</h2>
+                            {/* </div> */}
+                          <button type="button" className="addtocart">Add to Cart</button>
                       </div>
                   )
               })
