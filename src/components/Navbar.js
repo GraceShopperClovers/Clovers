@@ -9,8 +9,8 @@ function Navbar({ user, setUser, history }) {
   }
 
   return (
-    <div>
-      <h1>App Template</h1>
+    <div className="header">
+      <h1>Beanie Babies Emporium</h1>
       <nav>
         {user.id ? (
           <div>
@@ -25,6 +25,8 @@ function Navbar({ user, setUser, history }) {
           <div>
             <NavLink to='/login'>Login</NavLink>
             <NavLink to='/signup'>Sign Up</NavLink>
+            <NavLink to='/'>Home</NavLink>
+
           </div>
         )}
       </nav>
