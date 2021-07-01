@@ -11,8 +11,8 @@ async function createOrder({orderuserid}){
           `,
             [orderuserid]
           )
-          // const orderNum = order.ordernum
-          // localStorage.setItem('ordernum', orderNum)
+          const orderNum = order.ordernum
+          localStorage.setItem('ordernum', orderNum)
           return order
     } catch (error) {
         throw error

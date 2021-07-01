@@ -154,7 +154,8 @@ async function createInitialOrders(){
     const ordersToCreate = [
       {orderuserid:"1"},
       {orderuserid:"2"},
-      {orderuserid:"3"}
+      {orderuserid:"3"},
+      {}
 
     ]
     const orders = await Promise.all(ordersToCreate.map(createOrder))
@@ -186,6 +187,7 @@ async function createInitialOrderProducts(){
       {ordernum: "3", sku: "10", quantity: "1"},
       {ordernum: "3", sku: "2", quantity: "3"},
       {ordernum: "3", sku: "2"}
+      
     ]
     const orderproducts = await Promise.all(orderProdsCreated.map(createOrderProduct))
     console.log('OrdersProducts created:')

@@ -8,7 +8,7 @@ const { openOrder } = require('./utils')
 router.get('/', async (req, res) => {
     try {
         const orders = await getAllOrders()
-        res.send({ orders })
+        res.send( orders)
     } catch (error) {
         throw error
     }
@@ -23,7 +23,7 @@ router.post('/', async (req, res, next) => {
     orderData.orderuserid = orderuserid
     try {
         const order = await createOrder(orderData)
-        res.send({order})
+        res.send(order)
     } catch (error) {
         throw error
     }
