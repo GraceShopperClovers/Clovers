@@ -1,36 +1,54 @@
 import React, { useState, useEffect } from 'react'
-import {getProducts} from '../utils'
-import Axios from 'axios'
+// import {getProducts} from '../utils'
+import axios from 'axios'
 
-function Landing() {
-  //return <div className='landing'>This is a landing page</div>
-  // const productList = getProducts()
-  
-  // console.log(productList.rows)
-  // return <div>{productList}</div>
-
-  const [products, setProducts] = useState([]);
-
-  const fetchProducts = async () => {
-    const { data } = await Axios.get(
-      "/api/products"
-    );
-    const products = products.data;
-    setProducts(products);
-    console.log(products);
-  };
+export default function Landing() {
+  //get data from API 
+  const [products , setProducts] = useState('')
 
   useEffect(() => {
-    fetchProducts();
+    getAllProducts();
   }, []);
 
-  return (
+  const getAllProducts = () => {
+    axios.get('/api/products')
+    .then((response) => {
+      const allProducts = response.data.products.rows;
+      setProducts(allProducts)
+      console.log(allProducts)
+    })
+    .catch(error => console.error(`Error: ${error}`))
+  }
+  return(
     <div>
-      {products.map((product) => (
-        <p key={product.productname}>{product.description}</p>
-      ))}
+        <DisplayProduct products = {products} />
     </div>
-  );
+  )
 }
 
-export default Landing
+function DisplayProduct(props) {
+
+  const showProducts = (props) => {
+      const {products} = props
+
+      if(products.length > 0 ) {
+          return(
+              products.map((product, index) => {
+                  console.log(product);
+                  return(
+                      <div className='products' key = {index}>
+                          <h1 className="productname">{product.productname}</h1>
+                          <h2 className="price">{product.price}</h2>
+                          <img className ="productimage" src={product.imageurl}/>
+                      </div>
+                  )
+              })
+          )
+      }
+  }
+  return(
+      <>
+          {showProducts(props)}
+      </>
+  )
+}

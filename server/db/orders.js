@@ -12,7 +12,14 @@ async function createOrder({orderuserid}){
             [orderuserid]
           )
           const orderNum = order.ordernum
-          localStorage.setItem('ordernum', orderNum)
+
+          //Wouldnt we call this on a add to cart button 
+            //and store in local storage then
+
+            //Can't use localStorgae on DB side
+
+          // window.localStorage.setItem('ordernum', orderNum)
+          
           return order
     } catch (error) {
         throw error

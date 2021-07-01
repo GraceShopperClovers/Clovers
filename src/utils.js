@@ -102,42 +102,4 @@ function setToken(token) {
 }
 
 
-export default function getProducts(){
-  try{
 
-    const { data } = axios.get('/api/products',{
-      productname,description, price, imageurl,
-    })
-    if (data.rows){
-      products = data.rows
-      console.log(products)
-    }
-    return products 
-  }catch(error){
-    console.error('Could not load the products.\n',error)
-    return error
-  }
-}
-
-// renderProducts = async () => {
-//   try {
-//     const res = await axios.get('/api/products')
-//     const products = res.data
-//     this.setState({
-//       Products: products
-//     })
-//   } catch (error) {
-//     console.log(err)
-//   }
-// }
-
-// render() {
-//   const products = this.state.Products?.map((product, i) => (
-//     <li key={i} className="list-group-item">{product.text}</li>
-//   ))
-//   return (
-//     <div>
-//       {products}
-//     </div>
-//   )
-// }
