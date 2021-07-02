@@ -47,41 +47,20 @@ async function getOrderByOrdernum(ordernum) {
     }
 
     const { rows: products } = await client.query(`
-      SELECT products.*
+      SELECT products.sku, products.imageurl, products.productname, order_products.productprice, order_products.quantity
       FROM products
-      JOIN order_products ON products.sku=order_products."sku"
-      WHERE order_products."ordernum"=$1;
+      INNER JOIN order_products ON products.sku = order_products.sku
+      WHERE ordernum=$1;
     `, [ordernum])
-    // STILL WORKING 
-    // const {rows: orderproducts} = await client.query(`
-    //   SELECT quantity, productprice
-    //   FROM order_products
-    //   WHERE ordernum = $1;
-    // `, [ordernum])
 
     order.products = products
-    // order.products.productprice = orderproducts.productprice
-    // order.products.quantity = orderproducts.quantity
 
     return order
   } catch (error) {
     throw error
   }
 }
-//PATCH REQUEST TO UPDATE QUANTITY
-// async function updateOrder(ordernum, sku, quanitiy) {
-//   try {
-//     //UPDATE Quantiy FIELD ON one product
-//     await client.query(`
-//      UPDATE order
-//      SET $1
-//      WHERE sku=${sku}
-//      RETURNING * 
-//     `, [quanitiy])
-//   }
-   
 
-// }
 
 module.exports = {
   createOrder,
