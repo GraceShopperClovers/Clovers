@@ -61,9 +61,44 @@ async function addProductsToOrder(ordernum, product) {
     throw error
   }
 }
+
+//PATCH REQUEST TO UPDATE QUANTITY
+async function updateOrderQuantity(ordernum, sku, quanitiy) {
+  try {
+    //UPDATE Quantiy FIELD ON one product
+    const {rows} = await client.query(`
+     UPDATE order_products
+     SET quantity = $1
+     WHERE sku=${sku} AND ordernum = $2
+     RETURNING * 
+    `, [quanitiy, ordernum])
+    return rows
+  } catch(error){
+    throw error
+  }
+}
+
+//DELETE REQUEST TO DELETE ORDER PRODUCT
+async function deleteOrderProduct(ordernum, sku){
+  try {
+    const {rows} = await client.query(`
+      DELETE FROM order_products
+      WHERE ordernum = $1 AND sku = $2
+      RETURNING *;
+    `, [ordernum, sku])
+    return rows
+  } catch (error) {
+    
+  }
+}
+
   module.exports = {
     createOrderProduct,
     getAllOrderProducts,
     getOrderProductsByOrderNum,
-    addProductsToOrder
+    addProductsToOrder,
+    updateOrderQuantity,
+    deleteOrderProduct
   };
+
+  

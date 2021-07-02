@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { createOrderProduct, getAllOrderProducts, getOrderProductsByOrderNum } = require('../db')
+const { createOrderProduct, getAllOrderProducts, getOrderProductsByOrderNum, updateOrderQuantity, deleteOrderProduct } = require('../db')
 
 
 // GET api/orderproducts
@@ -38,9 +38,35 @@ router.post('/', async (req, res, next)=>{
         const orderProduct = await createOrderProduct(orderData)
         res.send(orderProduct)
     } catch (error) {
-        
+        throw error
     }
     
+})
+
+//PATCH api/orderproducts/:ordernum
+
+router.patch('/:ordernum', async (req, res, next)=>{
+    try {
+        const {sku, quantity} = req.body
+        const {ordernum} = req.params
+        const updateProductQuantity = await updateOrderQuantity(ordernum, sku, quantity)
+        res.send(updateProductQuantity)
+    } catch (error) {
+        throw error
+    }
+})
+
+//DELETE api/orderproducts/:ordernum
+
+router.delete('/:ordernum', async (req, res, next)=>{
+    try {
+        const {sku} = req.body
+        const {ordernum} = req.params
+        const removeProduct = await deleteOrderProduct(ordernum, sku)
+        res.send(removeProduct)
+    } catch (error) {
+        throw error
+    }
 })
 
 module.exports = router
