@@ -20,7 +20,7 @@ function Home(props) {
 
   return (
     <div className='Home'>
-      <h1>Welcome home, {user.username}</h1>
+      <h1>Welcome home, {user.email}</h1>
     </div>
   )
 }

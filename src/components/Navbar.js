@@ -13,7 +13,7 @@ function Navbar({ user, setUser, history }) {
       <h1>Beanie Babies Emporium</h1>
       <nav>
         {user.id ? (
-          <div>
+          <div className = 'links'>
             <NavLink to='/Home'>Home</NavLink>
             {
               <a href='#' onClick={handleLogout}>

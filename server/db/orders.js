@@ -53,6 +53,7 @@ async function getOrderByOrdernum(ordernum) {
       WHERE ordernum=$1;
     `, [ordernum])
 
+
     order.products = products
 
     return order
@@ -65,5 +66,6 @@ async function getOrderByOrdernum(ordernum) {
 module.exports = {
   createOrder,
   getAllOrders,
-  getOrderByOrdernum
+  getOrderByOrdernum,
+  // updateOrder
 }
