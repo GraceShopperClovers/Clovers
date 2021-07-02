@@ -101,5 +101,9 @@ function setToken(token) {
   localStorage.setItem('token', token)
 }
 
+function setOrdernum(ordernum) {
+  localStorage.setItem('ordernum', ordernum)
+}
+
 
 
