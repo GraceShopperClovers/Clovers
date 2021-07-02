@@ -28,7 +28,7 @@ async function createProducts({ productname, description, price, imageurl }) {
 async function getAllProducts() {
   try {
     const { rows } = await client.query(`
-      SELECT productname, description, price, imageurl
+      SELECT *
       FROM products;
     `)
     return { rows }

@@ -1,4 +1,5 @@
 import axios from 'axios'
+// import { createOrderProduct } from '../server/db'
 
 function setHeaders() {
   let token = localStorage.getItem('token')
@@ -105,5 +106,40 @@ function setOrdernum(ordernum) {
   localStorage.setItem('ordernum', ordernum)
 }
 
-
+export async function createOrder(sku) {
+  let orderNum = localStorage.getItem("ordernum")
+  const orderData = {
+    ordernum: orderNum,
+    sku: sku
+  }
+  if (orderNum){
+    try{
+      const { data } = await axios.post('/api/order_products',orderData)
+      return data
+    }catch(error){
+      console.log("boo")
+    }
+  }else{
+    // try {
+    //   let {data} = checkLogin()
+    //   if (data){
+    //     console.log(data)
+    //     console.log("CREATE ORDER USERID", userid)
+    //     const {data} = await axios.post('/api/orders',{
+    //       data,
+    //     })
+    //     setOrdernum(data.ordernum)
+    //     createOrder()
+    //   }else {
+    //     const {data} = await axios.post('/api/orders')
+    //     console.log("DATA ELSE ", data)
+    //     setOrdernum(data.ordernum)
+    //     createOrder()
+    //   }
+    // } catch (error) {
+    //   throw error
+    // }
+    console.log("Boo")
+  }
+}
 
