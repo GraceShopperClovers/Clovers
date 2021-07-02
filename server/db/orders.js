@@ -1,3 +1,4 @@
+const { user } = require('./client')
 const client = require('./client')
 
 async function createOrder({orderuserid}){
@@ -62,10 +63,22 @@ async function getOrderByOrdernum(ordernum) {
   }
 }
 
+async function getOpenOrdersByUserId(userid){
+  try {
+    const {rows} = await client.query(`
+      SELECT *
+      FROM orders
+      WHERE isopen = true AND orderuserid = $1
+    `, [userid])
+  } catch (error) {
+    throw error
+  }
+}
+
 
 module.exports = {
   createOrder,
   getAllOrders,
   getOrderByOrdernum,
-  // updateOrder
+  getOpenOrdersByUserId
 }
