@@ -4,22 +4,22 @@ import { login, register } from '../utils'
 
 function AuthForm(props) {
   let { type, setUser } = props // type of auth form (login or signup) and isLoggedIn Function
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   async function handleSubmit(evt) {
     evt.preventDefault()
 
-    if (!username || !password) {
+    if (!email || !password) {
       return // need to fill out username and password
     } else {
       try {
         let data =
           type === 'login'
-            ? await login(username, password)
-            : await register(username, password)
+            ? await login(email, password)
+            : await register(email, password)
         if (data.user) {
-          await setUsername('')
+          await setEmail('')
           await setPassword('')
           await setUser(data.user)
           props.history.push('/home') // send it home
@@ -31,15 +31,18 @@ function AuthForm(props) {
   }
 
   return (
+    <div className ="formBox">
     <form className='AuthForm' onSubmit={handleSubmit}>
+      <h1 className='title'>{type === 'login' ? 'Log In' : 'Register'}</h1>
       <div>
-        <label htmlFor='username'>Username:</label>
+        
+        <label htmlFor='email'>Email:</label>
         <input
-          id='username'
-          value={username}
+          id='email'
+          value={email}
           type='text'
-          placeholder='Type your username'
-          onChange={(evt) => setUsername(evt.target.value)}
+          placeholder='Type your email'
+          onChange={(evt) => setEmail(evt.target.value)}
         />
       </div>
       <div>
@@ -52,8 +55,9 @@ function AuthForm(props) {
           onChange={(evt) => setPassword(evt.target.value)}
         />
       </div>
-      <button type='submit'>{type === 'login' ? 'Login' : 'Register'}</button>
+      <button className = "button" type='submit'>{type === 'login' ? 'Login' : 'Register'}</button>
     </form>
+    </div>
   )
 }
 

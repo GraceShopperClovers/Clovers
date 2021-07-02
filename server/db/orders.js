@@ -56,6 +56,7 @@ async function getOrderByOrdernum(ordernum) {
     // const {rows: orderproducts} = await client.query(`
     //   SELECT quantity, productprice
     //   FROM order_products
+    //   JOIN products ON  products.productname= products."productname"
     //   WHERE ordernum = $1;
     // `, [ordernum])
 
@@ -78,13 +79,14 @@ async function getOrderByOrdernum(ordernum) {
 //      WHERE sku=${sku}
 //      RETURNING * 
 //     `, [quanitiy])
+//   } catch (error)  {
+//     throw error
 //   }
-   
-
 // }
 
 module.exports = {
   createOrder,
   getAllOrders,
-  getOrderByOrdernum
+  getOrderByOrdernum,
+  // updateOrder
 }
