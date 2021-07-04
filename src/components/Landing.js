@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 // import {getProducts} from '../utils'
 import axios from 'axios'
+import {createOrder} from '../utils'
 
 export default function Landing() {
   //get data from API 
@@ -15,7 +16,6 @@ export default function Landing() {
     .then((response) => {
       const allProducts = response.data.products.rows;
       setProducts(allProducts)
-      console.log(allProducts)
     })
     .catch(error => console.error(`Error: ${error}`))
   }
@@ -38,7 +38,6 @@ function DisplayProduct(props) {
       if(products.length > 0 ) {
           return(
               products.map((product, index) => {
-                  console.log(product);
                   //let productname = product.productname
                   return(
                       <div className='products' key = {index}>
@@ -49,7 +48,7 @@ function DisplayProduct(props) {
                             {/* <div id={product.productname}> */}
                           <h2 className="description">{product.description}</h2>
                             {/* </div> */}
-                          <button type="button" className="addtocart">Add to Cart</button>
+                          <button type="button" className="addtocart" onClick={()=>{createOrder(product.sku)}}>Add to Cart</button>
                       </div>
                   )
               })
