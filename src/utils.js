@@ -106,40 +106,36 @@ function setOrdernum(ordernum) {
   localStorage.setItem('ordernum', ordernum)
 }
 
-export async function createOrder(sku) {
+
+export async function createOrder(sku){
   let orderNum = localStorage.getItem("ordernum")
-  const orderData = {
-    ordernum: orderNum,
-    sku: sku
-  }
+  let myInfo = await checkLogin()
+  console.log("orderNum: ", orderNum)
+  console.log("my Info:", myInfo)
   if (orderNum){
-    try{
-      const { data } = await axios.post('/api/order_products',orderData)
-      return data
-    }catch(error){
-      console.log("boo")
+    console.log("inside the if....")
+    let orderData = {
+      ordernum: orderNum,
+      sku: sku
     }
-  }else{
-    // try {
-    //   let {data} = checkLogin()
-    //   if (data){
-    //     console.log(data)
-    //     console.log("CREATE ORDER USERID", userid)
-    //     const {data} = await axios.post('/api/orders',{
-    //       data,
-    //     })
-    //     setOrdernum(data.ordernum)
-    //     createOrder()
-    //   }else {
-    //     const {data} = await axios.post('/api/orders')
-    //     console.log("DATA ELSE ", data)
-    //     setOrdernum(data.ordernum)
-    //     createOrder()
-    //   }
-    // } catch (error) {
-    //   throw error
-    // }
-    console.log("Boo")
+    await axios.post('/api/orderproducts', orderData)
+
+    alert("this product has been added to your cart")
+  } else {
+    if (myInfo){
+      console.log("inside the else if...")
+      const order = await axios.post('api/orders', myInfo)
+      const newOrderNum = order.data.ordernum
+      console.log("order number: ", newOrderNum)
+      setOrdernum(newOrderNum)
+      createOrder(sku)
+    } else {
+      console.log("inside the else else....")
+      const order = await axios.post('api/orders', {orderuserid: null})
+      const newOrderNum = order.data.ordernum
+      setOrdernum(newOrderNum)
+      createOrder(sku)
+    }
   }
 }
 
