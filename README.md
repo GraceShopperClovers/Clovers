@@ -1,10 +1,28 @@
-# UIC Grace Shopper Template
+# UIC FullStack Academy Final Project
 
 ## ------- [WORK IN PROGRESSS] -------------
 
+## Project Decription
+- This is a functional example of an ecomerce website for this example we choice to work with Beanie Babies.
+    that was create by the team of(??ADD Git Profiles??)
+     Kathrine Baron 
+     Mikaela Farran 
+     Patrick Phillips
+     Riley Marshall
+
+- A working example of the website is available here : // URL ONCE WE LAUNCH //
+
+-In this project we have included the following featues:
+--JSON WebTokens
+--Bcrypt
+--Login/Register/Logout
+--A database to store user information and production information
+--An API router to connect the front-end and the back-end 
+--An editable shopping cart
+--
 ## Setup
 
-To use this as boilerplate, you'll need to take the following steps:
+
 
 - Don't fork or clone this repo! Instead, create a new, empty
   directory on your machine and `git init` (or create an empty repo on
