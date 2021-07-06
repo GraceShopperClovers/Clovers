@@ -14,16 +14,16 @@
 - A working example of the website is available here : // URL ONCE WE LAUNCH //
 
 -In this project we have included the following featues:
---JSON WebTokens
---Bcrypt
---Login/Register/Logout
---A database to store user information and production information
---An API router to connect the front-end and the back-end 
---An editable shopping cart
---
+  -JSON WebTokens
+  -Bcrypt
+  -Login/Register/Logout
+  -A database to store user information and production information
+  -An API router to connect the front-end and the back-end 
+  -An editable shopping cart
+
 ## Setup
 
-
+-The instructions that follow are available if you would like to test this project out in your local environment.
 
 - Don't fork or clone this repo! Instead, create a new, empty
   directory on your machine and `git init` (or create an empty repo on
