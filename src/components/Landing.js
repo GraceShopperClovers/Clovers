@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react' 
 import {createOrder} from '../utils'
 import axios from 'axios'
-import {createOrder} from '../utils'
 
 export default function Landing() {
   //get data from API 

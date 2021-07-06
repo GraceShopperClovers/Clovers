@@ -4,6 +4,7 @@ import { NavLink, withRouter } from 'react-router-dom'
 function Navbar({ user, setUser, history }) {
   function handleLogout() {
     localStorage.removeItem('token')
+    localStorage.removeItem('ordernum')
     setUser({})
     history.push('/')
     alert("Logout Successful!!!")

@@ -1,7 +1,6 @@
 const client = require('./client')
 const {getProductsBySku} = require('./products')
 
-console.log(require('./products'))
 async function createOrderProduct({ ordernum, sku, quantity }) {
   if(!quantity){
     quantity = '1'
@@ -51,7 +50,19 @@ async function getOrderProductsByOrderNum(ordernum){
 
 }
 
-
+async function getOrderProductsByOrdernumAndSku(ordernum, sku) {
+  try {
+    const {rows: orderproducts} = await client.query(`
+      SELECT *
+      FROM order_products
+      WHERE ordernum = $1
+      AND sku = $2;
+    `, [ordernum, sku])
+    return orderproducts
+  } catch (error) {
+    throw error
+  }
+}
 
 async function addProductsToOrder(ordernum, product) {
   try {
@@ -63,15 +74,15 @@ async function addProductsToOrder(ordernum, product) {
 }
 
 //PATCH REQUEST TO UPDATE QUANTITY
-async function updateOrderQuantity(ordernum, sku, quanitiy) {
+async function updateOrderQuantity(ordernum, sku, quantity) {
   try {
-    //UPDATE Quantiy FIELD ON one product
+    //UPDATE Quantity FIELD ON one product
     const {rows} = await client.query(`
      UPDATE order_products
      SET quantity = $1
      WHERE sku=${sku} AND ordernum = $2
      RETURNING * 
-    `, [quanitiy, ordernum])
+    `, [quantity, ordernum])
     return rows
   } catch(error){
     throw error
@@ -98,7 +109,8 @@ async function deleteOrderProduct(ordernum, sku){
     getOrderProductsByOrderNum,
     addProductsToOrder,
     updateOrderQuantity,
-    deleteOrderProduct
+    deleteOrderProduct,
+    getOrderProductsByOrdernumAndSku
   };
 
   
