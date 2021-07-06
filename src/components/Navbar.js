@@ -16,18 +16,23 @@ function Navbar({ user, setUser, history }) {
         {user.email ? (
           <div className = 'links'>
             <NavLink to='/Home'>Home</NavLink>
+            <NavLink to='/cart'>Shopping Cart</NavLink>
             {
               <a href='#' onClick={handleLogout}>
                 Log Out
               </a>
+              
             }
+                
           </div>
         ) : (
           <div>
-            <NavLink to='/login'>Login</NavLink>
-            <NavLink to='/signup'>Sign Up</NavLink>
+    
             <NavLink to='/'>Home</NavLink>
             <NavLink to='/cart'>Shopping Cart</NavLink>
+            <NavLink to='/login'>Login</NavLink>
+            <NavLink to='/signup'>Sign Up</NavLink>
+         
           </div>
         )}
       </nav>
