@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-// import {getProducts} from '../utils'
+import React, { useState, useEffect } from 'react' 
+import {createOrder} from '../utils'
 import axios from 'axios'
 import {createOrder} from '../utils'
 
@@ -54,7 +54,7 @@ function DisplayProduct(props) {
               })
           )
       }
-  }
+    }
   return(
       <>
           {showProducts(props)}

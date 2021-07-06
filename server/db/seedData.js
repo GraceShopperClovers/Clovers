@@ -62,8 +62,8 @@ async function createTables() {
     //order_products table
     await client.query(`
       CREATE TABLE order_products(
-        "ordernum" INTEGER REFERENCES orders(ordernum), 
-        "sku" INTEGER REFERENCES products(sku),
+        "ordernum" INTEGER REFERENCES orders(ordernum) NOT NULL, 
+        "sku" INTEGER REFERENCES products(sku) NOT NULL,
         quantity INTEGER NOT NULL,
         productprice INTEGER NOT NULL,
         UNIQUE("ordernum","sku")
@@ -185,7 +185,8 @@ async function createInitialOrderProducts(){
       {ordernum: "2", sku: "2", quantity: "3"},
       {ordernum: "3", sku: "12", quantity: "2"},
       {ordernum: "3", sku: "10", quantity: "1"},
-      {ordernum: "3", sku: "2"}
+      {ordernum: "3", sku: "2"},
+      {ordernum:"4",sku:"2",quantity:"1"}
       
     ]
  
