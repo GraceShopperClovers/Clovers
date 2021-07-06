@@ -107,39 +107,39 @@ function setOrdernum(ordernum) {
   localStorage.setItem('ordernum', ordernum)
 }
 
+
+
 export async function createOrder(sku){
   let orderNum = localStorage.getItem("ordernum")
   let myInfo = await checkLogin()
   if (orderNum) {
-    console.log("In if (orderNum)")
     let existingOrderProduct = await axios.get(`/api/orderproducts/${orderNum}/sku/${sku}`)
-    console.log('existingOrderProduct: ', existingOrderProduct)
-    if (existingOrderProduct) {
-      console.log("In if (existingOrderProduct)")
+    if (existingOrderProduct.data) {
       let updatedOrderData = {
         ordernum: orderNum,
         sku: sku,
-        quantity: existingOrderProduct.quantity + 1
+        quantity: existingOrderProduct.data.quantity + 1
       }
       await axios.patch(`/api/orderproducts/${orderNum}`, updatedOrderData)
+      alert("Product quantity has been updated.")
     } else {
-      console.log("In else (existingOrderProduct")
       let orderData = {
         ordernum: orderNum,
         sku: sku
       }
+    
       await axios.post('/api/orderproducts', orderData)
       alert("This product has been added to your cart.")
     }
   } else if (myInfo) {
-      console.log("In else if")
+      
       myInfo.orderuserid = myInfo.userid
       const order = await axios.post('api/orders', myInfo)
       const newOrderNum = order.data.ordernum
       setOrdernum(newOrderNum)
       createOrder(sku)
     } else {
-      console.log("In else")
+      
       const order = await axios.post('api/orders', {orderuserid: null})
       const newOrderNum = order.data.ordernum
       setOrdernum(newOrderNum)

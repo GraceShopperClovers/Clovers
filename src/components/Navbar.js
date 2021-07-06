@@ -5,16 +5,19 @@ function Navbar({ user, setUser, history }) {
   function handleLogout() {
     localStorage.removeItem('token')
     localStorage.removeItem('ordernum')
+    localStorage.removeItem('useremail')
     setUser({})
     history.push('/')
     alert("Logout Successful!!!")
   }
 
+  let userEmail = localStorage.getItem('useremail')
+
   return (
     <div className="header">
       <h1>Beanie Babies Emporium</h1>
       <nav>
-        {user.email ? (
+        {userEmail ? (
           <div className = 'links'>
             <NavLink to='/Home'>Home</NavLink>
             <NavLink to='/cart'>Shopping Cart</NavLink>
