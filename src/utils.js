@@ -10,6 +10,7 @@ function setHeaders() {
       },
     }
     : {}
+  console.log("setHeaders: ", config)
   return config
 }
 
@@ -27,9 +28,12 @@ function setHeaders() {
  */
 export async function checkLogin() {
   try {
+    console.log("firing checkLogin")
     let { data } = await axios.get('/api/users/me', setHeaders())
     // if data has an id and user the user is logged on
+    console.log('DATA FROM CHECKLOGIN: ', data)
     return data
+    
   } catch (err) {
     console.log('checkLogin(): User is not logged on.\n', err)
     return err
@@ -108,6 +112,7 @@ function setOrdernum(ordernum) {
 
 
 export async function createOrder(sku){
+  console.log("is the createOrder function happening?")
   let orderNum = localStorage.getItem("ordernum")
   let myInfo = await checkLogin()
   console.log("orderNum: ", orderNum)
@@ -124,6 +129,7 @@ export async function createOrder(sku){
   } else {
     if (myInfo){
       console.log("inside the else if...")
+      myInfo.orderuserid = myInfo.userid
       const order = await axios.post('api/orders', myInfo)
       const newOrderNum = order.data.ordernum
       console.log("order number: ", newOrderNum)

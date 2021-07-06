@@ -12,7 +12,7 @@ function Navbar({ user, setUser, history }) {
     <div className="header">
       <h1>Beanie Babies Emporium</h1>
       <nav>
-        {user.id ? (
+        {user.email ? (
           <div className = 'links'>
             <NavLink to='/Home'>Home</NavLink>
             {

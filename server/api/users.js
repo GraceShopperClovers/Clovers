@@ -77,6 +77,7 @@ router.post('/register', async (req, res, next) => {
 // GET /api/users/me
 router.get('/me', (req, res, next) => {
   try {
+    console.log("REQUEST IN API/Users/Me: ", req.user)
     res.send(req.user)
   } catch (error) {
     next(error)

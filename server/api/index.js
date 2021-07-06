@@ -2,26 +2,30 @@ const express = require('express')
 const router = express.Router()
 const jwt = require('jsonwebtoken')
 const { JWT_SECRET = 'neverTell' } = process.env
-const { getUserById } = require('../db')
+const { getUserByEmail } = require('../db')
 
 /* Middlware to see if user is logged in already*/
 
 // set `req.user` if possible
 router.use(async (req, res, next) => {
+  console.log("inside the middle step")
   const prefix = 'Bearer '
   const auth = req.header('Authorization')
   if (!auth) {
     // nothing to see here
+    console.log("no auth")
     next()
   } else if (auth.startsWith(prefix)) {
+    console.log("auth exists")
     const token = auth.slice(prefix.length)
 
     try {
       const parsedToken = jwt.verify(token, JWT_SECRET)
-
-      const id = parsedToken && parsedToken.id
-      if (id) {
-        req.user = await getUserById(id)
+      console.log("PARSED TOKEN: ", parsedToken)
+      const email = parsedToken && parsedToken.email
+      if (email) {
+        req.user = await getUserByEmail(email)
+        console.log("req. user: ", req.user)
         next()
       }
     } catch (error) {
