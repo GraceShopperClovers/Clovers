@@ -2,18 +2,14 @@ import axios from 'axios'
 
 function setHeaders() {
   let token = localStorage.getItem('token')
-  let config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }
-    // ? {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // }
-    // : {}
-    console.log("setHeaders: ", config)
+  let config = token
+    ? {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+    : {}
+  console.log("setHeaders: ", config)
   return config
 }
 
