@@ -6,10 +6,10 @@
 - This is a functional example of an ecomerce website for this example we choice to work with Beanie Babies.
    
 - This project was brought to up by the team of:(??ADD Git Profiles??)
-     Kathrine Baron \n
-     Mikaela Farran \n
-     Patrick Phillips \n
-     Riley Marshall
+    - Kathrine Baron 
+    - Mikaela Farran 
+    - Patrick Phillips 
+    - Riley Marshall
 
 - A working example of the website is available here : // URL ONCE WE LAUNCH //
 
