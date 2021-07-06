@@ -107,6 +107,8 @@ function setOrdernum(ordernum) {
   localStorage.setItem('ordernum', ordernum)
 }
 
+
+
 export async function createOrder(sku){
   let orderNum = localStorage.getItem("ordernum")
   let myInfo = await checkLogin()

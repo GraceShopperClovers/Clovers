@@ -2,6 +2,11 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { login, register } from '../utils'
 
+
+function setUserEmail(email) {
+  localStorage.setItem('useremail', email)
+}
+
 function AuthForm(props) {
   let { type, setUser } = props // type of auth form (login or signup) and isLoggedIn Function
   const [email, setEmail] = useState('')
@@ -22,6 +27,7 @@ function AuthForm(props) {
           await setEmail('')
           await setPassword('')
           await setUser(data.user)
+          setUserEmail(data.user.email)
           props.history.push('/home') // send it home
         }
       } catch (error) {
