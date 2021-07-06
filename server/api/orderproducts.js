@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { createOrderProduct, getAllOrderProducts, getOrderProductsByOrderNum, updateOrderQuantity, deleteOrderProduct } = require('../db')
+const { createOrderProduct, getAllOrderProducts, getOrderProductsByOrderNum, updateOrderQuantity, deleteOrderProduct, getOrderProductsByOrdernumAndSku } = require('../db')
 
 
 // GET api/orderproducts
@@ -21,6 +21,21 @@ router.get('/:ordernum', async (req, res)=>{
     try {
         const orderProducts = await getOrderProductsByOrderNum((ordernum))
         res.send({orderProducts})
+    } catch (error) {
+        throw error
+    }
+})
+
+//GET api/orderproducts/:ordernum/:sku
+
+router.get('/:ordernum/sku/:sku', async (req, res, next) => {
+    const {ordernum, sku} = req.params
+    console.log("ordernum: ", ordernum)
+    console.log("sku: ", sku)
+    try {
+        const [orderProduct] = await getOrderProductsByOrdernumAndSku(ordernum, sku)
+        console.log(orderProduct)
+        res.send(orderProduct)
     } catch (error) {
         throw error
     }

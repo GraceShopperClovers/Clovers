@@ -10,7 +10,6 @@ function setHeaders() {
       },
     }
     : {}
-  console.log("setHeaders: ", config)
   return config
 }
 
@@ -28,14 +27,12 @@ function setHeaders() {
  */
 export async function checkLogin() {
   try {
-    console.log("firing checkLogin")
     let { data } = await axios.get('/api/users/me', setHeaders())
     // if data has an id and user the user is logged on
-    console.log('DATA FROM CHECKLOGIN: ', data)
     return data
     
   } catch (err) {
-    console.log('checkLogin(): User is not logged on.\n', err)
+    console.error('checkLogin(): User is not logged on.\n', err)
     return err
   }
 }
@@ -110,38 +107,44 @@ function setOrdernum(ordernum) {
   localStorage.setItem('ordernum', ordernum)
 }
 
-
 export async function createOrder(sku){
-  console.log("is the createOrder function happening?")
   let orderNum = localStorage.getItem("ordernum")
   let myInfo = await checkLogin()
-  console.log("orderNum: ", orderNum)
-  console.log("my Info:", myInfo)
-  if (orderNum){
-    console.log("inside the if....")
-    let orderData = {
-      ordernum: orderNum,
-      sku: sku
+  if (orderNum) {
+    console.log("In if (orderNum)")
+    let existingOrderProduct = await axios.get(`/api/orderproducts/${orderNum}/sku/${sku}`)
+    console.log('existingOrderProduct: ', existingOrderProduct)
+    if (existingOrderProduct) {
+      console.log("In if (existingOrderProduct)")
+      let updatedOrderData = {
+        ordernum: orderNum,
+        sku: sku,
+        quantity: existingOrderProduct.quantity + 1
+      }
+      await axios.patch(`/api/orderproducts/${orderNum}`, updatedOrderData)
+    } else {
+      console.log("In else (existingOrderProduct")
+      let orderData = {
+        ordernum: orderNum,
+        sku: sku
+      }
+      await axios.post('/api/orderproducts', orderData)
+      alert("This product has been added to your cart.")
     }
-    await axios.post('/api/orderproducts', orderData)
-
-    alert("this product has been added to your cart")
-  } else {
-    if (myInfo){
-      console.log("inside the else if...")
+  } else if (myInfo) {
+      console.log("In else if")
       myInfo.orderuserid = myInfo.userid
       const order = await axios.post('api/orders', myInfo)
       const newOrderNum = order.data.ordernum
-      console.log("order number: ", newOrderNum)
       setOrdernum(newOrderNum)
       createOrder(sku)
     } else {
-      console.log("inside the else else....")
+      console.log("In else")
       const order = await axios.post('api/orders', {orderuserid: null})
       const newOrderNum = order.data.ordernum
       setOrdernum(newOrderNum)
       createOrder(sku)
     }
-  }
 }
+
 
