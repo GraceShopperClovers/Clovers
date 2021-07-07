@@ -70,6 +70,7 @@ async function getOpenOrdersByUserId(userid){
       FROM orders
       WHERE isopen = true AND orderuserid = $1
     `, [userid])
+    return rows
   } catch (error) {
     throw error
   }
