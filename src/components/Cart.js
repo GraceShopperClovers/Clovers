@@ -37,20 +37,51 @@ function DisplayProduct(props){
 
     const showCart = (props) => {
         const {cart} = props
-
+        console.log("CART: ", cart)
+        let orderTotal = 0
         if(cart.length>0){
             return (
-                cart.map((product, index) => {
+                <div>
+                {cart.map((product, index) => {
+                    orderTotal = orderTotal + (product.productprice * product.quantity)
                     return(
-                        <div className='cartProducts' key = {index}>
-                          <img className ="productimage" src={product.imageurl}/>
-                          <h1 className="productname">{product.productname}</h1>
-                          <h2 className="price">Price: ${product.productprice}</h2>
-                          <h2 className="qunatity">{product.quantity}</h2>
+                        <div key={index}>
+                            <div>
+                                <img className ="productimage" src={product.imageurl}/>
+                            </div>
+                            <div className='cartProducts' key = {index}>
+                                <h1 className="productname">{product.productname}</h1>
+                                <h2 className="price">Price: ${product.productprice}</h2>
+                                <h2 className="quantity"> <label>Quantity:</label>
+                                    <select name='quantity' onChange={(event)=>{updateQuantity(event, product)}}>
+                                        <option>{product.quantity}</option> 
+                                        <option>1</option> 
+                                        <option>2</option> 
+                                        <option>3</option> 
+                                        <option>4</option> 
+                                        <option>5</option> 
+                                        <option>6</option> 
+                                        <option>7</option> 
+                                        <option>8</option> 
+                                        <option>9</option>
+                                        <option>10</option>
+                                    </select>
+                                </h2>
+                                <button onClick={()=>{
+                                    deleteProduct(product)
+                                }}>Remove from Cart</button>
+                            </div>
+                            <div>
+                                <h1>Total: ${`${product.productprice}`*`${product.quantity}`}</h1>
+                            </div>
                         </div>
                     )
-                })
+                })}
+                <h1>Order Total: ${orderTotal}</h1>
+                </div>
             )
+        }else if (cart.length === 0){
+           return <h1>Your Cart is Empty</h1>
         }
 
     }
@@ -60,4 +91,24 @@ function DisplayProduct(props){
       </>
   )
 
+}
+
+async function deleteProduct({sku}){
+    const ordernum = localStorage.getItem('ordernum')
+    await axios.delete(`/api/orderproducts/${ordernum}/sku/${sku}`)
+    window.location.reload(false)
+}
+
+async function updateQuantity(event, product){
+    const {sku} = product
+    const quantity = event.target.value
+    console.log("SKU AND QUANTITY: ", sku, quantity)
+    const ordernum = localStorage.getItem('ordernum')
+    let updatedOrderData = {
+        ordernum: ordernum,
+        sku: sku,
+        quantity: quantity
+      }
+    await axios.patch(`/api/orderproducts/${ordernum}`, updatedOrderData)
+    window.location.reload(false)
 }

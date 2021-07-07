@@ -26,7 +26,7 @@ router.get('/:ordernum', async (req, res)=>{
     }
 })
 
-//GET api/orderproducts/:ordernum/:sku
+//GET api/orderproducts/:ordernum/sku/:sku
 
 router.get('/:ordernum/sku/:sku', async (req, res, next) => {
     const {ordernum, sku} = req.params
@@ -68,11 +68,11 @@ router.patch('/:ordernum', async (req, res, next)=>{
     }
 })
 
-//DELETE api/orderproducts/:ordernum
+//DELETE api/orderproducts/:ordernum/sku/:sku
 
-router.delete('/:ordernum', async (req, res, next)=>{
+router.delete('/:ordernum/sku/:sku', async (req, res, next)=>{
     try {
-        const {sku} = req.body
+        const {sku} = req.params
         const {ordernum} = req.params
         const removeProduct = await deleteOrderProduct(ordernum, sku)
         res.send(removeProduct)
