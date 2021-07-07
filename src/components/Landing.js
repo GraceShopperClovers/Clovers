@@ -6,6 +6,8 @@ export default function Landing() {
   //get data from API 
   const [products , setProducts] = useState('')
 
+
+
   useEffect(() => {
     getAllProducts();
   }, []);
@@ -15,6 +17,7 @@ export default function Landing() {
     .then((response) => {
       const allProducts = response.data.products.rows;
       setProducts(allProducts)
+      console.log("All PRODUCTS:  ", allProducts)
     })
     .catch(error => console.error(`Error: ${error}`))
   }
@@ -23,7 +26,29 @@ export default function Landing() {
         <DisplayProduct products = {products} />
     </div>
   )
+
+
+/*
+ADDING SEARCH BAR WORK
+*/
+
+function productMatches(products, text){
+  if (post.title.toLowerCase().includes(text) || 
+      post.description.toLowerCase().includes(text) || 
+      post.price.toLowerCase().includes(text) || 
+      post.author.username.toLowerCase().includes(text) ){
+      return true
+      
+  } else {
+      return false
+  }
 }
+}
+
+
+/*
+TILL HERE
+*/
 
 function DisplayProduct(props) {
 //   function ShowDiv(productname) {
@@ -31,12 +56,18 @@ function DisplayProduct(props) {
 // }
 
 
+const [searchTerm, setSearchTerm] = useState('')
   const showProducts = (props) => {
       const {products} = props
+   
 
       if(products.length > 0 ) {
+        const filteredProducts = products.filter( product => 
+          productMatches(product, searchTerm.toLowerCase()))
+          const productsToDisplay = searchTerm.length ? 
+          filteredProducts : products;  
           return(
-              products.map((product, index) => {
+              productsToDisplay.map((product, index) => {
                   //let productname = product.productname
                   return(
                       <div className='products' key = {index}>
@@ -56,6 +87,17 @@ function DisplayProduct(props) {
     }
   return(
       <>
+          {<div>
+            <label id='searchAvail'>Search Available Items </label>
+            <input 
+                id = 'search' 
+                type = 'text' 
+                placeholder = 'What are you looking for?'
+                value = {searchTerm}
+                onChange = {(event) => {
+                    setSearchTerm(event.target.value)}}
+            />
+        </div>}
           {showProducts(props)}
       </>
   )
