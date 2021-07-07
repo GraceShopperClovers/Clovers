@@ -132,7 +132,33 @@ async function createIntitialProducts(){
       price:'250',imageurl:'https://beaniepedia.com/beanies/files/2020/09/twigs-380x380.jpg'},
       {productname:'Seaweed the Otter',description:'Seaweed is a dark brown sea otter with a lighter brown muzzle. She has black button eyes and a tiny black nose. She carries a piece of green seaweed in her paws.',
       price:'7',imageurl:' https://beaniepedia.com/beanies/files/2021/03/seaweed-380x380.jpeg'},
-  ]
+      {productname:'Miami the Bear',description:'Miami is a brown bear with a black nose and pink-rimmed sunglasses. He wears a white towel around his neck and floral beach shorts.',
+      price:'11',imageurl:'https://beaniepedia.com/beanies/files/2021/06/miami.jpg'},
+      {productname:'Yukon the Bear',description:'Yukon is made from a furry brown material with a smoother brown muzzle. He has large yellow and black button eyes and a dark brown button nose.',
+      price:'13',imageurl:'https://beaniepedia.com/beanies/files/2014/02/yukonwwb-1.jpg'},
+      {productname:'Thunder the Elephant',description:'Thunder is made from a furry grey material. The inside of his ears and his eyebrows are made from a smoother fabric. Thunder has large silver and black button eyes.',
+      price:'5',imageurl:'https://beaniepedia.com/beanies/files/2014/02/thunderwwb-1.jpg'},
+      {productname:'Trouble',description:'Trouble is made from a fuzzy green material covered in purple spots. He has a single large sparkly green and black button eye and a huge mouth with a row of white teeth and a pink tongue. He has a purple face, hands and feet. His belly is white and he has two pointy purple horns on top of his head.',
+      price:'1',imageurl:'https://beaniepedia.com/beanies/files/2015/09/troublemonstaz-1.jpg'},
+      {productname:'Leonardo the Turtle',description:'Leonardo is a bright green turtle with embroidered eyes and an embroidered mouth. He wears a blue mask and brown belt. He wears a blue mask over his eyes.',
+      price:'17',imageurl:'https://beaniepedia.com/beanies/files/2021/03/leonardo.jpeg'},
+      {productname:'Iron Man the Superhero',description:'Iron Man is a red super hero with a yellow face, shoulders and legs. He has white eyes and light blue underneath and a black mouth.',
+      price:'3',imageurl:'https://beaniepedia.com/beanies/files/2020/12/ironman.jpg'},
+      {productname:'Inky the Octopus – Grey, With Mouth',description:'Inky is a grey octopus with white and black eyes and black stitching for his mouth. He has eight tentacles sprouting from his head.',
+      price:'53',imageurl:'https://beaniepedia.com/beanies/files/2020/12/inkygreywm.jpg'},
+      {productname:'Happy the Hippopotamus – Grey',description:'Happy is a light grey hippo with black button eyes and tiny grey ears.',
+      price:'5',imageurl:'https://beaniepedia.com/beanies/files/2020/03/happygrey.jpg'},
+      {productname:'Digger the Crab – Orange',description:'Digger is made from an orange material with black button eyes and black thread antennae. He has eight legs and two large pincers.',
+      price:'8',imageurl:'https://beaniepedia.com/beanies/files/2015/11/diggerorange-1.jpg'},
+      {productname:'Punchers the Lobster',description:'Punchers is a bright red colour with black button eyes and black thread antennae.',
+      price:'11',imageurl:'https://beaniepedia.com/beanies/files/2019/01/punchers.jpg'},
+      {productname:'Scottie the Dog',description:'Scottie is a Scottish Terrier dog made from a textured material. He has black button eyes and a black nose. His legs are short and he is in a standing pose.',
+      price:'13',imageurl:'https://beaniepedia.com/beanies/files/2021/06/scottie.jpg'},
+      {productname:'Scoop the Pelican',description:'Scoop is a blue pelican with black button eyes and a large orange beak. He has bright orange feet and small, blue wings the same colour as the rest of his body.',
+      price:'19',imageurl:'https://beaniepedia.com/beanies/files/2020/10/scoop.jpg'},
+
+    ]
+  
     // console.log('Testing input:', prodsToCreate)
     const products = await Promise.all(prodsToCreate.map(createProducts))
 
