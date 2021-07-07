@@ -5,7 +5,7 @@ import axios from 'axios'
 export default function Landing() {
   //get data from API 
   const [products , setProducts] = useState('')
-
+  const [searchTerm, setSearchTerm] = useState('')
 
 
   useEffect(() => {
@@ -21,30 +21,54 @@ export default function Landing() {
     })
     .catch(error => console.error(`Error: ${error}`))
   }
+  console.log("PRODUCTS:  ", allProducts)
+const filteredProducts = products.filter(product => 
+  productMatches(product, searchTerm.toLowerCase()))
+const productsToDisplay = searchTerm.length ? 
+  filteredProducts : products; 
+
+function productMatches(product, text){
+  if (product.productname.toLowerCase().includes(text) || 
+      product.description.toLowerCase().includes(text) || 
+      product.price.includes(text)){
+      return true
+      
+  } else {
+      return false
+  }
+
+}
   return(
     <div id="prodcont">
         <DisplayProduct products = {products} />
     </div>
   )
 
-
+  
 /*
 ADDING SEARCH BAR WORK
 */
+// console.log("PRODUCTS:  ", {products})
+// const filteredProducts = products.filter(product => 
+//   productMatches(product, searchTerm.toLowerCase()))
+// const productsToDisplay = searchTerm.length ? 
+//   filteredProducts : products; 
 
-function productMatches(products, text){
-  if (post.title.toLowerCase().includes(text) || 
-      post.description.toLowerCase().includes(text) || 
-      post.price.toLowerCase().includes(text) || 
-      post.author.username.toLowerCase().includes(text) ){
-      return true
+// function productMatches(product, text){
+//   if (product.productname.toLowerCase().includes(text) || 
+//       product.description.toLowerCase().includes(text) || 
+//       product.price.toLowerCase().includes(text)){
+//       return true
       
-  } else {
-      return false
-  }
-}
-}
+//   } else {
+//       return false
+//   }
 
+// }
+// }
+
+
+ 
 
 /*
 TILL HERE
@@ -56,16 +80,14 @@ function DisplayProduct(props) {
 // }
 
 
-const [searchTerm, setSearchTerm] = useState('')
+
+
   const showProducts = (props) => {
       const {products} = props
    
 
       if(products.length > 0 ) {
-        const filteredProducts = products.filter( product => 
-          productMatches(product, searchTerm.toLowerCase()))
-          const productsToDisplay = searchTerm.length ? 
-          filteredProducts : products;  
+
           return(
               productsToDisplay.map((product, index) => {
                   //let productname = product.productname
@@ -88,11 +110,11 @@ const [searchTerm, setSearchTerm] = useState('')
   return(
       <>
           {<div>
-            <label id='searchAvail'>Search Available Items </label>
+            <label id='searchAvail'>Search Products </label>
             <input 
                 id = 'search' 
                 type = 'text' 
-                placeholder = 'What are you looking for?'
+                placeholder = '...keyword...'
                 value = {searchTerm}
                 onChange = {(event) => {
                     setSearchTerm(event.target.value)}}
@@ -101,4 +123,5 @@ const [searchTerm, setSearchTerm] = useState('')
           {showProducts(props)}
       </>
   )
+}
 }
