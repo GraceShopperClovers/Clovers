@@ -51,6 +51,32 @@
     background-color: white;
 }
 
+.pageButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.nextPage {
+    background-color: rgb(130, 200, 226);
+    border: none;
+    font-size: 2em;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 10px;
+
+}
+
+.lastPage {
+    background-color: rgb(130, 200, 226);
+    border: none;
+    font-size: 2em;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 10px;
+
+}
 
 /* .active, .collapsible:hover {
     background-color: #555;
