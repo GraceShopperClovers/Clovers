@@ -9,9 +9,12 @@ function App() {
   useEffect(() => {
     const setLogIn = async () => {
       let data = await checkLogin()
-      if (data.id) {
+      console.log("DATA INSIDE USE EFFECT: ", data)
+      if (data.userid) {
         setUser(data)
+        console.log("INSIDE APP.js USER 1:", user)
       }
+      console.log("INSIDE APP.js USER 2:", user)
     }
     setLogIn()
   }, [])

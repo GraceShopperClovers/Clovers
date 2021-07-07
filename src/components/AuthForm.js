@@ -1,10 +1,25 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { login, register } from '../utils'
+import { login, register, setOrdernum } from '../utils'
 
 
 function setUserEmail(email) {
   localStorage.setItem('useremail', email)
+}
+
+async function setOpenUserOrder(userid){
+  try {
+    const {data: [rows]} = await axios.get(`/api/orders/user/${userid}`)
+    console.log("openOrder: ", rows)
+    if (rows){
+      setOrdernum(rows.ordernum)
+    }
+    return
+  } catch (error) {
+    console.error(error)
+  }
+  
+
 }
 
 function AuthForm(props) {
@@ -28,6 +43,7 @@ function AuthForm(props) {
           await setPassword('')
           await setUser(data.user)
           setUserEmail(data.user.email)
+          setOpenUserOrder(data.user.userid)
           props.history.push('/home') // send it home
         }
       } catch (error) {

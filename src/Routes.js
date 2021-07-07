@@ -22,7 +22,7 @@ function Routes(props) {
       />
       <Route path='/home' component={Landing} />
 
-      <Route path='/cart' component={Cart} />
+      <Route path='/cart' render={()=> <Cart user = {user} setUser = {setUser} />}/>
 
       <Route path='/' component={Landing} />
       
