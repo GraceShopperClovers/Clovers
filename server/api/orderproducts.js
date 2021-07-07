@@ -30,11 +30,8 @@ router.get('/:ordernum', async (req, res)=>{
 
 router.get('/:ordernum/sku/:sku', async (req, res, next) => {
     const {ordernum, sku} = req.params
-    console.log("ordernum: ", ordernum)
-    console.log("sku: ", sku)
     try {
         const [orderProduct] = await getOrderProductsByOrdernumAndSku(ordernum, sku)
-        console.log(orderProduct)
         res.send(orderProduct)
     } catch (error) {
         throw error

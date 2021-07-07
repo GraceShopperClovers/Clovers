@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Routes from './Routes'
-import { checkLogin, getProducts } from './utils'
+import { checkLogin } from './utils'
 
 function App() {
   const [user, setUser] = useState({})
@@ -9,12 +9,9 @@ function App() {
   useEffect(() => {
     const setLogIn = async () => {
       let data = await checkLogin()
-      console.log("DATA INSIDE USE EFFECT: ", data)
       if (data.userid) {
         setUser(data)
-        console.log("INSIDE APP.js USER 1:", user)
       }
-      console.log("INSIDE APP.js USER 2:", user)
     }
     setLogIn()
   }, [])
@@ -25,7 +22,5 @@ function App() {
     </div>
   )
 }
-
-
 
 export default App

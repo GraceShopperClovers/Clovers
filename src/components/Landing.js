@@ -3,7 +3,6 @@ import {createOrder} from '../utils'
 import axios from 'axios'
 
 export default function Landing() {
-  //get data from API 
   const [products , setProducts] = useState('')
 
   useEffect(() => {
@@ -26,10 +25,6 @@ export default function Landing() {
 }
 
 function DisplayProduct(props) {
-//   function ShowDiv(productname) {
-//     document.getElementById(productname).style.display = "";
-// }
-
 
   const showProducts = (props) => {
       const {products} = props
@@ -37,16 +32,12 @@ function DisplayProduct(props) {
       if(products.length > 0 ) {
           return(
               products.map((product, index) => {
-                  //let productname = product.productname
                   return(
                       <div className='products' key = {index}>
                         <img className ="productimage" src={product.imageurl}/>
                           <h1 className="productname">{product.productname}</h1>
                           <h2 className="price">Price: ${product.price}</h2>
-                          {/* <button type="button" className="collapsible"  onclick={ShowDiv(productname)}>More info</button> */}
-                            {/* <div id={product.productname}> */}
                           <h2 className="description">{product.description}</h2>
-                            {/* </div> */}
                           <button type="button" className="addtocart" onClick={()=>{createOrder(product.sku)}}>Add to Cart</button>
                       </div>
                   )

@@ -45,10 +45,8 @@ router.post('/', async (req, res, next) => {
 
 router.get('/user/:userid', async (req, res, next)=>{
     const {userid} = req.params
-    console.log("inside get api/orders/user/:userid: userid: ", userid)
     try {
         const ordersByUser = await getOpenOrdersByUserId(userid)
-        console.log("ORDERS BY USER: ", ordersByUser)
         res.send(ordersByUser)
     } catch (error) {
         throw error

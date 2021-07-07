@@ -99,7 +99,7 @@ async function deleteOrderProduct(ordernum, sku){
     `, [ordernum, sku])
     return rows
   } catch (error) {
-    
+    throw error
   }
 }
 
