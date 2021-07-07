@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react' 
 import {createOrder} from '../utils'
 import axios from 'axios'
+import ShowSearch from './SearchBar'
 
 export default function Landing() {
   const [products , setProducts] = useState('')
@@ -21,7 +22,11 @@ export default function Landing() {
   let limmitedProducts = products.slice(0 + page * 12, page*12 + 12)
   return(
     <div>
+      <div className="searchParent">
+       <ShowSearch products = {products} />
+       </div>
     <div id="prodcont">
+       
         <DisplayProduct products = {limmitedProducts} />
     </div>
     <div className="pageButtons">
