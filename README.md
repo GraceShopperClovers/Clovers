@@ -1,10 +1,28 @@
-# UIC Grace Shopper Template
+# UIC FullStack Academy Final Project
 
-## ------- [WORK IN PROGRESSS] -------------
+## ------- [REMOVE ALL CAPITALIZED LINES BEFORE LAUNCH ] -------------
+
+## Project Decription
+- This is a functional example of an ecomerce website for this example we choice to work with Beanie Babies.
+   
+- This project was brought to up by the team of:(??ADD GIT PROFILES??)
+    - Kathrine Baron 
+    - Mikaela Farran 
+    - Patrick Phillips 
+    - Riley Marshall
+
+- A working example of the website is available here : // URL ONCE WE LAUNCH //
+
+- In this project we have included the following featues:
+  - JSON WebTokens
+  - Bcrypt
+  - Login/Register/Logout
+  - A database to store user information and production information
+  - An API router to connect the front-end and the back-end 
+  - An editable shopping cart
 
 ## Setup
-
-To use this as boilerplate, you'll need to take the following steps:
+- The instructions that follow are available if you would like to test this project out in your local environment.
 
 - Don't fork or clone this repo! Instead, create a new, empty
   directory on your machine and `git init` (or create an empty repo on
@@ -12,7 +30,10 @@ To use this as boilerplate, you'll need to take the following steps:
 
 - Now you will have to add the fs-app-template as a remote and merge it into your own repository.
 
+
+
 ```
+IF WE ARE KEEPING THIS WE NEED TO EDIT THE WEBSITE AND MAKE THE ORG PUBLIC
 git remote add gs-uic-template https://github.com/FullstackAcademy/gs-uic-template.git
 git fetch gs-uic-template
 git merge gs-uic-template/main
