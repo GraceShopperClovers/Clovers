@@ -2,10 +2,6 @@ const client = require('./client')
 
 async function createProducts({ productname, description, price, imageurl }) {
     try {
-      // console.log('productname', productname)
-      // console.log('description', description)
-      // console.log('price', price)
-      // console.log('imageurl', imageurl)
 
       const {
         rows: [products],
@@ -37,7 +33,6 @@ async function getAllProducts() {
   }
 }
 
-  
   async function getProductsBySku(sku) {
     try {
       const {rows} = await client.query(`
@@ -52,16 +47,9 @@ async function getAllProducts() {
     }
   }
 
-
-
   module.exports = { 
     createProducts,
     getAllProducts,
     getProductsBySku,
     
-  };
-  // default exports 
- 
-  //   getProductsBySku,
-   
-  // };
+  }

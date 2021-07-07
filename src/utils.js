@@ -3,7 +3,6 @@ import axios from 'axios'
 
 function setHeaders() {
   let token = localStorage.getItem('token')
-  console.log("is there a token? ", token)
   let config = token
     ? {
       headers: {
@@ -11,7 +10,6 @@ function setHeaders() {
       },
     }
     : {}
-    console.log("CONFIG:: ", config)
   return config
 }
 
@@ -29,7 +27,6 @@ function setHeaders() {
  */
 export async function checkLogin() {
   try {
-    console.log("inside checkLogin")
     let { data } = await axios.get('/api/users/me', setHeaders())
     // if data has an id and user the user is logged on
 

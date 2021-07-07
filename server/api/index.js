@@ -8,22 +8,18 @@ const { getUserByEmail } = require('../db')
 
 // set `req.user` if possible
 router.use(async (req, res, next) => {
-  console.log("inside the first .use...")
   const prefix = 'Bearer '
   const auth = req.header('Authorization')
   if (!auth) {
     // nothing to see here
-    console.log("no auth")
     next()
   } else if (auth.startsWith(prefix)) {
     const token = auth.slice(prefix.length)
-    console.log("TOKEN INSIDE MIDDLEWARE: ", token)
     try {
       const parsedToken = jwt.verify(token, JWT_SECRET)
       const email = parsedToken && parsedToken.email
       if (email) {
         req.user = await getUserByEmail(email)
-        console.log("req.user inside middleware: ", req.user)
         next()
       }
     } catch (error) {

@@ -19,7 +19,6 @@ router.post('/login', async (req, res, next) => {
 
   try {
     const user = await getUser({ email, password })
-    console.log(user)
     if (!user) {
       next({
         name: 'IncorrectCredentialsError',
@@ -34,7 +33,7 @@ router.post('/login', async (req, res, next) => {
       res.send({ user, message: "you're logged in!", token })
     }
   } catch (error) {
-    console.log(error)
+    console.error(error)
     next(error)
   }
 })
@@ -77,7 +76,6 @@ router.post('/register', async (req, res, next) => {
 // GET /api/users/me
 router.get('/me', (req, res, next) => {
   try {
-    console.log("is it getting to the get request?", req.user)
     res.send(req.user)
   } catch (error) {
     next(error)
