@@ -1,27 +1,41 @@
+#ShoppingCart {
+    background-color: rgb(255, 146, 136);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
 .Cartpage{
     background-color: rgb(255, 254, 195);
     width: 80%;
     align-items: center;
-    margin-left:8%;
-    margin-top: 8%;
-    padding: 20px;
+    /* margin:20px; */
+    padding: 50px;
     border: 1px solid black ;
-    margin-bottom: 15px;
     border-radius: 10px;
     box-shadow: 5px 5px 15px black;
-    
+    display: flex;
+    flex-direction: column;
+    align-self: center;
 }
-
 
 .title{
     text-align: center;
     font-size: 70px;
 }
 
-.image{
-    float: left;
-    width: 25%;
+.Cart {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid black;
+    align-items: center;
+    margin-top: 15px;
+    width: 100%;
+    padding-bottom: 20px;
+    padding-right: 35px;
 }
+
 
 .productimage {
     height: 125px;
@@ -33,36 +47,46 @@
 }
 
 .cartProducts {
-    justify-content: center;
-    margin-top: 20px;
+    margin-bottom: 15px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 35%;
+    align-items: flex-start;
+}
+
+.cartProducts h1 {
+    font-size: 25px;
+}
+.cartProducts h2 {
+    font-size: 20px;
 }
 
 .total{
    text-align: right;
-   justify-content: top;
-   border-bottom: 1px solid black ;
-   padding-bottom: 10px;
-
+   justify-content: flex-end;
+   align-self: flex-end;
+   margin-bottom: 15px;
 }
 
 .orderTotal {
    text-align: right;
-   margin-top: 15px;;
+   margin-top: 15px;
+   align-self: flex-end;
 }
 
 .Cartpage button {
     margin-top: 10px;
     font-size: 16px;
-}
-
-.quantity{
-    font-size: 16px;
-    margin-left: 10px;
+    width: 80%;
+    min-width: 100px
 }
 
 .checkout {
     text-align: right;
-    margin-top: 15px;;
+    margin-top: 15px;
+    align-self: flex-end;
 }
 
 .emptyCart {

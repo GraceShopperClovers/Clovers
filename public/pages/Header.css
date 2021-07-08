@@ -1,3 +1,5 @@
+
+
 .header{
     background-color: rgb(130, 200, 226); 
     color: white;
@@ -5,11 +7,6 @@
     border-bottom:2px solid black ;
     padding-bottom: 10px;
     padding-top: 20px;
-    
-
-}
-
-.header  {
     text-align: center;
     font-size: 48px;
     margin-bottom: 15px;
@@ -53,6 +50,19 @@
 
 
 
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  align-content: center;
+  text-align: center;
+  align-self: center;
+}
 
+/* nav {
+  display: flex;
+  justify-content: center;
+  align-items: center
+} */
 
 

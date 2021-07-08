@@ -68,7 +68,7 @@ function DisplayProduct(props){
                             <div className='cartProducts' key = {index}>
                                 <h1 className="productname">{product.productname}</h1>
                                 <h2 className="price">Price: ${product.productprice}</h2>
-                                <h2 className="quantity"> <label>Quantity:</label>
+                                <h2 className="quantity"> <label>Quantity:  </label>
                                     <select className='quantity' onChange={(event)=>{updateQuantity(event, product)}}>
                                         <option>{product.quantity}</option> 
                                         <option>1</option> 

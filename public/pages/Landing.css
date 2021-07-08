@@ -1,5 +1,4 @@
 #prodcont {
-    /* background-color: yellow; */
     background-color: rgb(255, 146, 136);
     display: flex;
     flex-wrap: wrap;
@@ -8,7 +7,6 @@
  
 }
 .products{
-    /* background-color: rgb(237, 41, 57); */
     background-color: rgb(255, 254, 195);
     margin:20px;
     display: flex;

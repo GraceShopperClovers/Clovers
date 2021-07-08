@@ -17,8 +17,8 @@
 
 }
 
-.title{
-    font-size: 1.5em;
+.formBox h1 {
+    font-size: 48px;
 }
 
 html{
@@ -31,3 +31,4 @@ html{
     background-color:white; 
 
 }
+
