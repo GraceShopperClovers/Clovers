@@ -54,7 +54,6 @@ nav > .header{
   display: flex;
   flex-wrap: wrap;
   width: 100vw;
-  /* align-self:stretch; */
   align-content: center;
   text-align: center;
 }
