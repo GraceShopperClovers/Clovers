@@ -6,7 +6,7 @@
 - This is a functional example of an ecomerce website for this example we choice to work with Beanie Babies.
    
 - This project was brought to up by the team of:(??ADD GIT PROFILES??)
-    - Kathrine Baron 
+    - Katherine Baron 
     - Mikaela Farran 
     - Patrick Phillips 
     - Riley Marshall
