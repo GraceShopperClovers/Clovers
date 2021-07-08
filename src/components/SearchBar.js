@@ -15,13 +15,18 @@ function productMatches(products, text){
         return false
     }
   }
-
+ if (props.products){
   const filteredProducts = props.products.filter(product => 
     productMatches(product, searchTerm.toLowerCase()))
 
     console.log("FILTEREDPRODUCTS:     ", filteredProducts)
+  }
 //   const productsToDisplay = searchTerm.length ? 
 //     filteredProducts : products;  
+  
+function clearForm(){
+    setSearchTerm('')
+}
 
 return(
         <div className ="searchBar">
@@ -34,7 +39,7 @@ return(
               onChange = {(event) => {
                   setSearchTerm(event.target.value)}}
           />
-          <button className="clearSearch">Clear Search</button>
+          <button className="clearSearch" >Clear Search</button>
         </div>
         )
 }
