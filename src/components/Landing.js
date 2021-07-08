@@ -4,7 +4,8 @@ import axios from 'axios'
 
 export default function Landing() {
   const [products , setProducts] = useState('')
-
+  const [page, setPage] = useState(0)
+ 
   useEffect(() => {
     getAllProducts();
   }, []);
@@ -17,10 +18,31 @@ export default function Landing() {
     })
     .catch(error => console.error(`Error: ${error}`))
   }
+  let limmitedProducts = products.slice(0 + page * 12, page*12 + 12)
   return(
+    <div>
     <div id="prodcont">
-        <DisplayProduct products = {products} />
+        <DisplayProduct products = {limmitedProducts} />
     </div>
+    <div className="pageButtons">
+    {page <= 0 ? (
+    <div>
+       </div> ) : (
+           <div>
+              <button  className="lastPage" onClick={() => setPage(page - 1)}>Previous 12</button>
+           </div>
+       )
+       }
+          {page >= (products.length/12 -1) ? (
+    <div>
+       </div> ) : (
+           <div>
+              <button className="nextPage" onClick={() => setPage(page + 1)}>Next 12</button>
+           </div>
+       )
+       }
+     </div>
+     </div>
   )
 }
 
@@ -28,9 +50,10 @@ function DisplayProduct(props) {
 
   const showProducts = (props) => {
       const {products} = props
-
+      
       if(products.length > 0 ) {
           return(
+            
               products.map((product, index) => {
                   return(
                       <div className='products' key = {index}>
@@ -41,7 +64,9 @@ function DisplayProduct(props) {
                           <button type="button" className="addtocart" onClick={()=>{createOrder(product.sku)}}>Add to Cart</button>
                       </div>
                   )
+                  
               })
+              
           )
       }
     }
