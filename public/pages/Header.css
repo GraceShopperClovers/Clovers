@@ -50,19 +50,15 @@
 
 
 
-nav {
+nav > .header{
   display: flex;
   flex-wrap: wrap;
   width: 100vw;
+  /* align-self:stretch; */
   align-content: center;
   text-align: center;
-  align-self: center;
 }
 
-/* nav {
-  display: flex;
-  justify-content: center;
-  align-items: center
-} */
+
 
 
