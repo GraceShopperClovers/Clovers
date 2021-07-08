@@ -27,7 +27,7 @@ export default function Cart() {
         {orderNum ? 
         ( <DisplayProduct cart = {cart} /> )
         :
-        ( <h1>Your shopping cart is empty!</h1> )
+        ( <div className="emptyCart"><div className="emptyCart1">Your Cart is Empty</div></div> )
         }
         </div>
     )
@@ -46,14 +46,14 @@ function DisplayProduct(props){
                 {cart.map((product, index) => {
                     orderTotal = orderTotal + (product.productprice * product.quantity)
                     return(
-                        <div classname="Cart"key={index}>
+                        <div className="Cart"key={index}>
                             <div className="image">
                                 <img className ="productimage" src={product.imageurl}/>
                             </div>
                             <div className='cartProducts' key = {index}>
                                 <h1 className="productname">{product.productname}</h1>
                                 <h2 className="price">Price: ${product.productprice}</h2>
-                                <h2 className="quantity"> <label>Quantity:</label>
+                                <h2 className="quantity"> <label>Quantity:  </label>
                                     <select className='quantity' onChange={(event)=>{updateQuantity(event, product)}}>
                                         <option>{product.quantity}</option> 
                                         <option>1</option> 

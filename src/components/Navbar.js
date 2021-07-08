@@ -44,10 +44,10 @@ function Navbar({ user, setUser, history }) {
         {userEmail ? (
           <div className = 'links'>
             <NavLink to='/Home'>Home</NavLink>
-            <NavLink to='/cart'>Shopping Cart</NavLink>
+            <NavLink to='/cart'>Cart</NavLink>
             {
               <a href='#' onClick={handleLogout}>
-                Log Out
+                Logout
               </a>
               
             }
@@ -57,9 +57,9 @@ function Navbar({ user, setUser, history }) {
           <div>
     
             <NavLink to='/'>Home</NavLink>
-            <NavLink to='/cart'>Shopping Cart</NavLink>
+            <NavLink to='/cart'>Cart</NavLink>
             <NavLink to='/login'>Login</NavLink>
-            <NavLink to='/signup'>Sign Up</NavLink>
+            <NavLink to='/signup'>Join</NavLink>
          
           </div>
         )}
