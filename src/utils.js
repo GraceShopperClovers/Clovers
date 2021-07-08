@@ -89,6 +89,7 @@ export async function register(email, password) {
       email,
       password,
     })
+    alert("You have been registered and logged in.")
     if (data.token) {
       setToken(data.token)
     }
