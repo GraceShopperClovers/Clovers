@@ -54,7 +54,7 @@ function DisplayProduct(props){
                                 <h1 className="productname">{product.productname}</h1>
                                 <h2 className="price">Price: ${product.productprice}</h2>
                                 <h2 className="quantity"> <label>Quantity:</label>
-                                    <select name='quantity' onChange={(event)=>{updateQuantity(event, product)}}>
+                                    <select className='quantity' onChange={(event)=>{updateQuantity(event, product)}}>
                                         <option>{product.quantity}</option> 
                                         <option>1</option> 
                                         <option>2</option> 
@@ -68,7 +68,7 @@ function DisplayProduct(props){
                                         <option>10</option>
                                     </select>
                                 </h2>
-                                <button onClick={()=>{
+                                <button  onClick={()=>{
                                     deleteProduct(product)
                                 }}>Remove from Cart</button>
                             </div>
@@ -82,16 +82,17 @@ function DisplayProduct(props){
                     <h1>Order Total: ${orderTotal}</h1>
                 </div>
                 
-                <div className="checkout"></div>
+                <div className="checkout">
                 <button onClick={()=>{
                                     deleteProduct(product)
                                 }}>Checkout!</button>
                 </div>
+                </div>
             )
         }else if (cart.length === 0){
-           return <h1>Your Cart is Empty</h1>
+           return  ( <div className="emptyCart"><div className="emptyCart1">Your Cart is Empty</div></div> )
         }
-
+        
     }
     return(
       <>
