@@ -11,7 +11,7 @@
     - Patrick Phillips 
     - Riley Marshall
 
-- A working example of the website is available here : // URL ONCE WE LAUNCH //
+- A working example of the website is available here : https://clovergraceshopper.herokuapp.com/
 
 - In this project we have included the following featues:
   - JSON WebTokens
