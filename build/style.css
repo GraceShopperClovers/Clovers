@@ -1,0 +1,50 @@
+/*
+    Basic Styling to get started (feel free to erase and add as needed)
+*/
+
+*{
+  font-family: 'Balsamiq Sans', cursive;
+
+  margin: 0px;
+
+}
+#root{
+  margin: 0px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: 20px;
+}
+nav {
+  
+  padding: 5px;
+
+}
+.Landing,
+.Home {
+  font-size: 24px;
+  font-weight: bold;
+  margin:   10px 40px;
+}
+
+.AuthForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  font-size: 24px;
+}
+
+.AuthForm input {
+  width: 250px;
+  margin: 5px 10px;
+}
+
+.App {
+  padding: 0px;
+  
+}

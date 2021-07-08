@@ -1,0 +1,34 @@
+.formBox{
+    display:flex;
+    height:50vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.AuthForm{
+    display:flex;
+    display: center;
+    align-items:center;
+    padding: 15px;
+    border: 1px solid black ;
+    box-shadow: 5px 5px 15px black;
+    border-radius: 10px;
+    background-color: rgb(255, 254, 195);
+
+}
+
+.formBox h1 {
+    font-size: 48px;
+}
+
+html{
+    background-color: rgb(255, 146, 136);
+
+}
+
+.button{
+    margin-top: 10px;
+    background-color:white; 
+
+}
+
