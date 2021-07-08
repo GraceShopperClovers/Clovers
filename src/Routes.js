@@ -3,6 +3,7 @@ import { Switch, Route, withRouter } from 'react-router-dom'
 import AuthForm from './components/AuthForm'
 import Landing from './components/Landing'
 import Cart from './components/Cart'
+import Checkout from './components/Checkout'
 
 function Routes(props) {
   const { user, setUser } = props
@@ -23,6 +24,8 @@ function Routes(props) {
       <Route path='/home' component={Landing} />
 
       <Route path='/cart' render={()=> <Cart user = {user} setUser = {setUser} />}/>
+
+      <Route path='/checkout' component={Checkout} />
 
       <Route path='/' component={Landing} />
       

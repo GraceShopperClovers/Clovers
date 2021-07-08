@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Redirect } from 'react-router-dom'
 
 export default function Cart() {
     const [cart , setCart] = useState('')
@@ -27,17 +28,31 @@ export default function Cart() {
         {orderNum ? 
         ( <DisplayProduct cart = {cart} /> )
         :
-        ( <h1>Your shopping cart is empty!</h1> )
+        ( <div className="emptyCart"><div className="emptyCart1">Your Cart is Empty</div></div> )
         }
         </div>
     )
 } 
 
+
+
 function DisplayProduct(props){
+
+    const [checkedout, setCheckedout] = useState(false)
+
+    async function checkout() {
+        const ordernum = localStorage.getItem('ordernum')
+        await axios.patch(`/api/orders/${ordernum}`)
+        localStorage.removeItem('ordernum')
+        setCheckedout(true)
+    }
+
+    if (checkedout === true) {
+        return <Redirect to='/checkout' />
+    }
 
     const showCart = (props) => {
         const {cart} = props
-        console.log("CART: ", cart)
         let orderTotal = 0
         if(cart.length>0){
             return (
@@ -46,7 +61,7 @@ function DisplayProduct(props){
                 {cart.map((product, index) => {
                     orderTotal = orderTotal + (product.productprice * product.quantity)
                     return(
-                        <div classname="Cart"key={index}>
+                        <div className="Cart"key={index}>
                             <div className="image">
                                 <img className ="productimage" src={product.imageurl}/>
                             </div>
@@ -84,7 +99,7 @@ function DisplayProduct(props){
                 
                 <div className="checkout">
                 <button onClick={()=>{
-                                    deleteProduct(product)
+                                    checkout()
                                 }}>Checkout!</button>
                 </div>
                 </div>
@@ -111,7 +126,6 @@ async function deleteProduct({sku}){
 async function updateQuantity(event, product){
     const {sku} = product
     const quantity = event.target.value
-    console.log("SKU AND QUANTITY: ", sku, quantity)
     const ordernum = localStorage.getItem('ordernum')
     let updatedOrderData = {
         ordernum: ordernum,
@@ -121,3 +135,4 @@ async function updateQuantity(event, product){
     await axios.patch(`/api/orderproducts/${ordernum}`, updatedOrderData)
     window.location.reload(false)
 }
+

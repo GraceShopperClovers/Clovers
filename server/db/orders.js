@@ -76,10 +76,27 @@ async function getOpenOrdersByUserId(userid){
   }
 }
 
+//PATCH REQUEST TO UPDATE ORDER TO CLOSED
+async function updateOrder(ordernum) {
+  try {
+    //UPDATE isopen FIELD
+    const {rows} = await client.query(`
+     UPDATE orders
+     SET isopen = false
+     WHERE ordernum = $1
+     RETURNING * 
+    `, [ordernum])
+    return rows
+  } catch(error){
+    throw error
+  }
+}
+
 
 module.exports = {
   createOrder,
   getAllOrders,
   getOrderByOrdernum,
-  getOpenOrdersByUserId
+  getOpenOrdersByUserId,
+  updateOrder
 }
