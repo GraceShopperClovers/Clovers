@@ -41,12 +41,13 @@ function DisplayProduct(props){
         let orderTotal = 0
         if(cart.length>0){
             return (
-                <div>
+                <div className="Cartpage">
+                  <h1 className="title">Cart</h1>
                 {cart.map((product, index) => {
                     orderTotal = orderTotal + (product.productprice * product.quantity)
                     return(
-                        <div key={index}>
-                            <div>
+                        <div classname="Cart"key={index}>
+                            <div className="image">
                                 <img className ="productimage" src={product.imageurl}/>
                             </div>
                             <div className='cartProducts' key = {index}>
@@ -71,13 +72,20 @@ function DisplayProduct(props){
                                     deleteProduct(product)
                                 }}>Remove from Cart</button>
                             </div>
-                            <div>
+                            <div className="total">
                                 <h1>Total: ${`${product.productprice}`*`${product.quantity}`}</h1>
                             </div>
                         </div>
                     )
                 })}
-                <h1>Order Total: ${orderTotal}</h1>
+                <div className="orderTotal">
+                    <h1>Order Total: ${orderTotal}</h1>
+                </div>
+                
+                <div className="checkout"></div>
+                <button onClick={()=>{
+                                    deleteProduct(product)
+                                }}>Checkout!</button>
                 </div>
             )
         }else if (cart.length === 0){

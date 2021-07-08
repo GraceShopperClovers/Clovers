@@ -1,0 +1,29 @@
+.Cart{
+   
+    
+}
+
+
+.title{
+    text-align: center;
+    font-size: 70px;
+}
+
+.image{
+    float: left;
+    width: 25%;
+}
+
+.productimage {
+    height: 125px;
+    width: 125px;
+}
+
+.cartProducts {
+    justify-content: center;
+}
+
+.total{
+   justify-content: right;
+
+}
