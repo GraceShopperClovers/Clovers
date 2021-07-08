@@ -15,7 +15,31 @@ function Navbar({ user, setUser, history }) {
 
   return (
     <div className="header">
-      <h1>Beanie Babies Emporium</h1>
+      {/* <h1>Beanie Babies Emporium</h1> */}
+      
+      <span>B</span>
+      <span>E</span>
+      <span>A</span>
+      <span>N</span>
+      <span>I</span>
+      <span>E</span>
+      <span> </span>
+      <span>B</span>
+      <span>A</span>
+      <span>B</span>
+      <span>I</span>
+      <span>E</span>
+      <span>S</span>
+      <span> </span>
+      <span>E</span>
+      <span>M</span>
+      <span>P</span>
+      <span>O</span>
+      <span>R</span>
+      <span>I</span>
+      <span>U</span>
+      <span>M</span>
+  
       <nav>
         {userEmail ? (
           <div className = 'links'>
