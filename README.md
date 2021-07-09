@@ -1,6 +1,4 @@
-# UIC FullStack Academy Final Project
-
-## ------- [REMOVE ALL CAPITALIZED LINES BEFORE LAUNCH ] -------------
+# UIC FullStack Academy Final Project - Clovers Group
 
 ## Project Decription
 - This is a functional example of an ecomerce website for this example we choice to work with Beanie Babies.
@@ -19,7 +17,9 @@
   - Login/Register/Logout
   - A database to store user information and production information
   - An API router to connect the front-end and the back-end 
-  - An editable shopping cart
+  - An editable shopping cart with checkout functionality
+  - Search bar to filter products
+  - Pagination
 
 ## Setup
 - The instructions that follow are available if you would like to test this project out in your local environment.
