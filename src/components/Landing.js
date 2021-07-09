@@ -64,7 +64,7 @@ function DisplayProduct(props) {
                           <h2 className="price">Price: ${product.price}</h2>
                           <h2 className="description">{product.description}</h2>
                           <button type="button" className="addtocart" onClick={()=>{createOrder(product.sku)}}>Add to Cart</button>
-                          <ToastContainer />
+                          <ToastContainer {...props} />
                       </div>
                   )
                   
