@@ -10,6 +10,8 @@
     align-content: center;
     justify-content: center;
     max-width: 80vw;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 #searchTitle {
@@ -22,7 +24,31 @@
 
 .searchParent {
     display: flex;
+    flex-wrap: wrap;
     align-content: center;
     justify-content: center;
     padding-top: 30px ;
 }
+
+@media only screen and (max-width: 540px) {
+   .searchBar {
+       width: 100%;
+      display:flex;
+   }
+#search{
+
+    margin-bottom: 10px;
+
+}
+   .button {
+       font-size: 10px;
+   }
+
+   #searchTitle{
+       margin-bottom: 10px;
+   }
+
+   .clearSearch{
+       margin-bottom: 10px;
+   }
+  }
