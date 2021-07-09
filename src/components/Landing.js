@@ -4,6 +4,7 @@ import axios from 'axios'
 import ShowSearch from './SearchBar'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import PageButtons from './PageButton'
 
 
 export default function Landing() {
@@ -53,30 +54,15 @@ function productMatches(products, text){
        {searchTerm.length>0 ? (
         <DisplayProduct products = {filteredProducts} />
        ) : (
-
+        < >
         <DisplayProduct products = {limmitedProducts} />
+        <PageButtons setPage ={setPage} page={page} products={products}/>
+        </>
        )
 }
-    </div>
-    <div className="pageButtons">
-    {page <= 0 ? (
-    <div>
-       </div> ) : (
-           <div>
-              <button  className="lastPage" onClick={() => setPage(page - 1)}>Previous</button>
-           </div>
-       )
-       }
-          {page >= (products.length/12 -1) ? (
-    <div>
-       </div> ) : (
-           <div>
-              <button className="nextPage" onClick={() => setPage(page + 1)}>Next</button>
-           </div>
-       )
-       }
-     </div>
-     </div>
+</div>
+</div>
+
   )
 }
 
