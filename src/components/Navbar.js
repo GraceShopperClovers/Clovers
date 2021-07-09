@@ -1,5 +1,7 @@
 import React from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
+import { ToastContainer, toast} from 'react-toastify'
+
 
 function Navbar({ user, setUser, history }) {
   function handleLogout() {
@@ -8,7 +10,9 @@ function Navbar({ user, setUser, history }) {
     localStorage.removeItem('useremail')
     setUser({})
     history.push('/')
-    alert("Logout Successful!!!")
+    toast.success('🦄 Logout Successful!!!',{ autoClose: 3000})
+
+    // alert("Logout Successful!!!")
   }
 
   let userEmail = localStorage.getItem('useremail')
