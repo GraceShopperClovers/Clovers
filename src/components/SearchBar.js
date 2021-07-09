@@ -9,7 +9,7 @@ function clearForm(){
 }
 return(
         <div className ="searchBar">
-          <label id='searchTitle'>Search Products </label>
+          <label id='searchTitle'>Search Products: </label>
           <input 
               id = 'search' 
               type = 'text' 

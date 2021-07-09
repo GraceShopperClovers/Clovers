@@ -63,7 +63,7 @@ function productMatches(products, text){
     <div>
        </div> ) : (
            <div>
-              <button  className="lastPage" onClick={() => setPage(page - 1)}>Previous 12</button>
+              <button  className="lastPage" onClick={() => setPage(page - 1)}>Previous</button>
            </div>
        )
        }
@@ -71,7 +71,7 @@ function productMatches(products, text){
     <div>
        </div> ) : (
            <div>
-              <button className="nextPage" onClick={() => setPage(page + 1)}>Next 12</button>
+              <button className="nextPage" onClick={() => setPage(page + 1)}>Next</button>
            </div>
        )
        }
