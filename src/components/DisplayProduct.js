@@ -49,7 +49,7 @@ export default function DisplayProduct(props){
                     return(
                         <div className="Cart"key={product.productname}>
                             <div className="image">
-                                <img className ="productimage" src={product.imageurl}/>
+                                <img className ="cartproductimage" src={product.imageurl}/>
                             </div>
                             <div className='cartProducts' >
                                 <h1 className="productname">{product.productname}</h1>
