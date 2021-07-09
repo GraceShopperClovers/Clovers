@@ -48,3 +48,8 @@ nav {
   padding: 0px;
   
 }
+
+button {
+  border-radius: 15px;
+  font-size: 16px;
+}
