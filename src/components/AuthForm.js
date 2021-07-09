@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { login, register, setOrdernum } from '../utils'
 
-
 function setUserEmail(email) {
   localStorage.setItem('useremail', email)
 }
