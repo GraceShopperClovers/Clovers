@@ -40,8 +40,8 @@
 
 
 .productimage {
-    height: 125px;
-    width: 125px;
+    height: 150px;
+    width: 150px;
     border: 1px solid black ;
     margin-bottom: 15px;
     border-radius: 10px;
@@ -123,19 +123,20 @@
     }
     .image {
         align-self: center;
-        width: 100%;
+        margin-right: 15px;
     }
     .cartProducts {
         margin-bottom: 15px;
         margin-left: 30px;
         display: flex;
         flex-direction: column;
-        width: 100%;
+        width: 80%;
         text-align: left;
-        align-items:flex-start
+        align-items: flex-start;
     }
     .total{
         width: 100%;
-        text-align: center;
+        text-align: right;
+        align-self: center;
     }
 }
