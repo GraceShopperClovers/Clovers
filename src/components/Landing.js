@@ -4,12 +4,30 @@ import axios from 'axios'
 import ShowSearch from './SearchBar'
 
 export default function Landing() {
-  const [products , setProducts] = useState('')
+  const [products , setProducts] = useState([])
   const [page, setPage] = useState(0)
- 
+  const [searchTerm, setSearchTerm] = useState('')
+  const [filteredProducts, setFilteredProducts]= useState([])
+
   useEffect(() => {
     getAllProducts();
   }, []);
+
+
+function productMatches(products, text){
+  if (products.productname.toLowerCase().includes(text) || 
+      products.description.toLowerCase().includes(text)){
+      return true
+      
+  } else {
+      return false
+  }
+}
+
+  useEffect(()=> {
+    setFilteredProducts(products.filter(product => 
+      productMatches(product, searchTerm.toLowerCase())))
+  },[searchTerm])
 
   const getAllProducts = () => {
     axios.get('/api/products')
@@ -19,15 +37,23 @@ export default function Landing() {
     })
     .catch(error => console.error(`Error: ${error}`))
   }
+
   let limmitedProducts = products.slice(0 + page * 12, page*12 + 12)
   return(
     <div>
       <div className="searchParent">
-       <ShowSearch products = {products } setProducts = {setProducts} />
+       <ShowSearch products = {products } setProducts = {setProducts} 
+            searchTerm ={searchTerm} setSearchTerm={setSearchTerm}/>
        </div>
     <div id="prodcont">
-       
+      
+       {searchTerm.length>0 ? (
+        <DisplayProduct products = {filteredProducts} />
+       ) : (
+
         <DisplayProduct products = {limmitedProducts} />
+       )
+}
     </div>
     <div className="pageButtons">
     {page <= 0 ? (

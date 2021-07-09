@@ -1,36 +1,12 @@
-import React, { useState, useEffect } from 'react' 
-import axios from 'axios'
+import React from 'react' 
 
 export default function ShowSearch (props) {
-    const [searchTerm, setSearchTerm] = useState('')
-    const { setProducts} = props
-    console.log("props:   ", props)
-    console.log("PROPS.products:   ", props.products)
-
-function productMatches(products, text){
-    if (products.productname.toLowerCase().includes(text) || 
-        products.description.toLowerCase().includes(text)){
-        return true
-        
-    } else {
-        return false
-    }
-  }
- if (props.products){
-  const filteredProducts = props.products.filter(product => 
-    productMatches(product, searchTerm.toLowerCase()))
-
-    console.log("FILTEREDPRODUCTS:     ", filteredProducts)
-    setProducts(filteredProducts)
-  }
-  
-//   const productsToDisplay = searchTerm.length ? 
-//     filteredProducts : products;  
+    const { setProducts, searchTerm, setSearchTerm } = props
   
 function clearForm(){
     setSearchTerm('')
+    setProducts(props.products)
 }
-
 return(
         <div className ="searchBar">
           <label id='searchTitle'>Search Products </label>
@@ -40,9 +16,11 @@ return(
               placeholder = '...keyword...'
               value = {searchTerm}
               onChange = {(event) => {
-                  setSearchTerm(event.target.value)}}
+                  setSearchTerm(event.target.value)
+                }}
+
           />
-          <button className="clearSearch" >Clear Search</button>
+          <button className="clearSearch" onClick={()=>clearForm()} >Clear Search</button>
         </div>
         )
 }
