@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { login, register, setOrdernum } from '../utils'
 
-
 function setUserEmail(email) {
   localStorage.setItem('useremail', email)
 }
@@ -62,7 +61,7 @@ function AuthForm(props) {
         <input
           id='email'
           value={email}
-          type='text'
+          type='email'
           placeholder='Type your email'
           onChange={(evt) => setEmail(evt.target.value)}
         />

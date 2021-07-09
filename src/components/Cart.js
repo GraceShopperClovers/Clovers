@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import DisplayProduct from './DisplayProduct'
 
 export default function Cart() {
     const [cart , setCart] = useState('')
+    const [displayCart, setDisplayCart] = useState(true)
+
     
     let orderNum = localStorage.getItem("ordernum")
 
@@ -10,7 +13,9 @@ export default function Cart() {
         let { data } = await axios.get(`/api/orders/${orderNum}`)
         if (data) {
             const orderProducts = data.products
+            if (orderProducts !== cart) {
             setCart(orderProducts)
+            }
         } else {
             return
         }
@@ -20,44 +25,19 @@ export default function Cart() {
         if (orderNum) {
             getOrder()
         }
-    }, [])
+    }, [displayCart])
 
     return (
         <div id="ShoppingCart">
         {orderNum ? 
-        ( <DisplayProduct cart = {cart} /> )
+        ( <DisplayProduct cart = {cart} setDisplayCart = {setDisplayCart} displayCart = {displayCart}/> )
         :
-        ( <h1>Your shopping cart is empty!</h1> )
+        ( <div className="emptyCart"><div className="emptyCart1">Your Cart is Empty</div></div> )
         }
         </div>
     )
 } 
 
-function DisplayProduct(props){
 
-    const showCart = (props) => {
-        const {cart} = props
 
-        if(cart.length>0){
-            return (
-                cart.map((product, index) => {
-                    return(
-                        <div className='cartProducts' key = {index}>
-                          <img className ="productimage" src={product.imageurl}/>
-                          <h1 className="productname">{product.productname}</h1>
-                          <h2 className="price">Price: ${product.productprice}</h2>
-                          <h2 className="qunatity">{product.quantity}</h2>
-                        </div>
-                    )
-                })
-            )
-        }
 
-    }
-    return(
-      <>
-          {showCart(props)}
-      </>
-  )
-
-}

@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { ToastContainer, toast} from 'react-toastify'
+
 // import { createOrderProduct } from '../server/db'
 
 function setHeaders() {
@@ -89,12 +91,16 @@ export async function register(email, password) {
       email,
       password,
     })
+    toast('🦄 You have been registered and logged in!',{ autoClose: 3000})
+
     if (data.token) {
       setToken(data.token)
     }
     return data
   } catch (err) {
     console.error('register(): Unable to register user.\n', err)
+        alert("Email is already registered. Please Log In")
+
     // returns error to be handled
     return err
   }
@@ -122,7 +128,8 @@ export async function createOrder(sku){
         quantity: existingOrderProduct.data.quantity + 1
       }
       await axios.patch(`/api/orderproducts/${orderNum}`, updatedOrderData)
-      alert("Product quantity has been updated.")
+      toast('🦄 Product quantity has been updated!',{ autoClose: 3000})
+
     } else {
       let orderData = {
         ordernum: orderNum,
@@ -130,7 +137,8 @@ export async function createOrder(sku){
       }
     
       await axios.post('/api/orderproducts', orderData)
-      alert("This product has been added to your cart.")
+      toast('🦄 This product has been added to your cart!',{ autoClose: 3000})
+
     }
   } else if (myInfo) {
       

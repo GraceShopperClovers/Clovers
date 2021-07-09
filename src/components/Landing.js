@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 import {createOrder} from '../utils'
 import axios from 'axios'
 import ShowSearch from './SearchBar'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 
 export default function Landing() {
   const [products , setProducts] = useState([])
@@ -93,6 +96,7 @@ function DisplayProduct(props) {
                           <h2 className="price">Price: ${product.price}</h2>
                           <h2 className="description">{product.description}</h2>
                           <button type="button" className="addtocart" onClick={()=>{createOrder(product.sku)}}>Add to Cart</button>
+                          <ToastContainer {...props} />
                       </div>
                   )
                   

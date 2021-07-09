@@ -1,0 +1,142 @@
+#ShoppingCart {
+    background-color: rgb(255, 146, 136);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.Cartpage{
+    background-color: rgb(255, 254, 195);
+    width: 80vw;
+    /* align-items: center; */
+    padding: 50px;
+    border: 1px solid black ;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px black;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.title{
+    text-align: center;
+    font-size: 70px;
+    width: 100%;
+    height: 100%;
+}
+
+.Cart {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid black;
+    /* align-items: center; */
+    margin-top: 15px;
+    width: 100%;
+    padding-bottom: 20px;
+    justify-content: space-between;
+    /* padding-right: 35px; */
+}
+
+
+.productimage {
+    height: 150px;
+    width: 150px;
+    border: 1px solid black ;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px black;
+}
+
+.cartProducts {
+    margin-bottom: 15px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 35%;
+    align-items: flex-start;
+}
+
+.cartProducts h1 {
+    font-size: 25px;
+}
+.cartProducts h2 {
+    font-size: 20px;
+}
+
+.total{
+   text-align: right;
+   justify-content: flex-end;
+   align-self: flex-end;
+   margin-bottom: 15px;
+}
+
+.orderTotal {
+   text-align: right;
+   margin-top: 15px;
+   align-self: flex-end;
+}
+
+.Cartpage button {
+    margin-top: 10px;
+    font-size: 16px;
+    width: 80%;
+    min-width: 100px;
+    max-width: 200px;
+}
+
+.checkout {
+    text-align: right;
+    margin-top: 15px;
+    align-self: flex-end;
+}
+
+.emptyCart {
+    display:flex;
+    height:50vh;
+    align-items: center;
+    justify-content: center;
+}
+.emptyCart1{
+    display:flex;
+    display: center;
+    align-items:center;
+    padding: 15px;
+    border: 1px solid black ;
+    box-shadow: 5px 5px 15px black;
+    border-radius: 10px;
+    background-color: rgb(255, 254, 195);
+    font-size: 50px;
+}
+
+@media (max-width:800px) {
+    .Cartpage {
+        max-width: 600px;
+        width:fit-content;
+        padding: 10px;
+    }
+    .Cart {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .image {
+        align-self: center;
+        margin-right: 15px;
+    }
+    .cartProducts {
+        margin-bottom: 15px;
+        margin-left: 30px;
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        text-align: left;
+        align-items: flex-start;
+    }
+    .total{
+        width: 100%;
+        text-align: right;
+        align-self: center;
+    }
+}
