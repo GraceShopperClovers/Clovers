@@ -3,6 +3,7 @@ import axios from 'axios'
 
 export default function ShowSearch (props) {
     const [searchTerm, setSearchTerm] = useState('')
+    const { setProducts} = props
     console.log("props:   ", props)
     console.log("PROPS.products:   ", props.products)
 
@@ -20,7 +21,9 @@ function productMatches(products, text){
     productMatches(product, searchTerm.toLowerCase()))
 
     console.log("FILTEREDPRODUCTS:     ", filteredProducts)
+    setProducts(filteredProducts)
   }
+  
 //   const productsToDisplay = searchTerm.length ? 
 //     filteredProducts : products;  
   

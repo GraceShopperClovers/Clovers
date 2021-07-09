@@ -23,7 +23,7 @@ export default function Landing() {
   return(
     <div>
       <div className="searchParent">
-       <ShowSearch products = {products} />
+       <ShowSearch products = {products } setProducts = {setProducts} />
        </div>
     <div id="prodcont">
        
