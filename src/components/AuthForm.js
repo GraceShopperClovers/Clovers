@@ -61,7 +61,7 @@ function AuthForm(props) {
         <input
           id='email'
           value={email}
-          type='text'
+          type='email'
           placeholder='Type your email'
           onChange={(evt) => setEmail(evt.target.value)}
         />
