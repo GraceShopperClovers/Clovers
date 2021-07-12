@@ -92,11 +92,27 @@ async function updateOrder(ordernum) {
   }
 }
 
+async function updateOrderUser(ordernum, userid){
+  try{
+    const {rows} = await client.query(`
+      UPDATE orders
+      SET orderuserid = $1
+      WHERE ordernum = $2
+      RETURNING *
+    `, [userid, ordernum])
+    return rows
+  }
+  catch(error){
+    throw error
+  }
+ }
+ 
 
 module.exports = {
   createOrder,
   getAllOrders,
   getOrderByOrdernum,
   getOpenOrdersByUserId,
-  updateOrder
+  updateOrder,
+  updateOrderUser
 }

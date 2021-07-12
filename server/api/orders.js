@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { createOrder, getAllOrders, getOrderByOrdernum, getOpenOrdersByUserId, updateOrder } = require('../db')
+const { createOrder, getAllOrders, getOrderByOrdernum, getOpenOrdersByUserId, updateOrder, updateOrderUser } = require('../db')
 const { openOrder } = require('./utils')
 
 // GET api/orders
@@ -64,5 +64,18 @@ router.patch('/:ordernum', async (req, res, next)=>{
         throw error
     }
 })
+
+// PATCH api/orders/user/:ordernum
+router.patch('/user/:ordernum', async (req, res, next)=>{
+    try{
+        const {ordernum} = req.params
+        const userid = req.body.user
+        const updateOrderUserId = await updateOrderUser(ordernum, userid)
+        res.send(updateOrderUserId)
+    }catch(error){
+        throw error
+    }
+ })
+ 
 
 module.exports = router

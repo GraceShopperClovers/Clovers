@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const jwt = require('jsonwebtoken')
-const { createUser, getUser, getUserByEmail, getUserById } = require('../db')
+const { createUser, getUser, getUserByEmail, updateOrderUser } = require('../db')
 const SALT_COUNT = 10
 const { JWT_SECRET = 'neverTell' } = process.env
 
@@ -65,6 +65,7 @@ router.post('/register', async (req, res, next) => {
           JWT_SECRET,
           { expiresIn: '1w' }
         )
+        
         res.send({ user, message: "you're signed up!", token })
       }
     }

@@ -96,6 +96,7 @@ export async function register(email, password) {
     if (data.token) {
       setToken(data.token)
     }
+
     return data
   } catch (err) {
     console.error('register(): Unable to register user.\n', err)
