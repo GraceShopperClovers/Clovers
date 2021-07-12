@@ -13,7 +13,6 @@ async function setOpenUserOrder(props){
   }
   try {
     const {data: [rows]} = await axios.get(`/api/orders/user/${userid}`)
-    console.log("openOrder: ", rows)
     if (rows){
       setOrdernum(rows.ordernum)
     } else if (localStorage.getItem('ordernum')){
