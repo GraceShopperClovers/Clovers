@@ -109,6 +109,10 @@ async function createIntitialProducts() {
   try {
     const prodsToCreate = [
       {
+        productname: "Clover the Bear", description: "Clover is made from a white material covered in green clovers. He has a green material on the inside of his ears, muzzle, hands and feet. He has black button eyes and a larger black nose and wears a bright green bow tie.",
+        price: "19", imageurl: 'https://beaniepedia.com/beanies/files/2015/10/clover-1.jpg?ezimgfmt=rs:180x180/rscb1/ng:webp/ngcb1'
+      },
+      {
         productname: 'Sarge the German Shepherd', description: 'Sarge is a German Shepherd Dog with a tan brown body and face and a mottled brown back and head. He has black button eyes and a black nose with black stitching for his mouth.',
         price: '9', imageurl: ' https://beaniepedia.com/beanies/files/2020/11/sarge.jpg'
       },
@@ -207,10 +211,6 @@ async function createIntitialProducts() {
       {
         productname: "Champion – Chicago Cubs the Bear", description: "Champion is a dark blue bear with black button eyes and a larger black button nose. He has the words “2016 World Champions” embroidered on his chest. A red and white ribbon is tied around his neck.",
         price: "108", imageurl: 'https://beaniepedia.com/beanies/files/2019/06/champion-380x380.jpg'
-      },
-      {
-        productname: "Clover the Bear", description: "Clover is made from a white material covered in green clovers. He has a green material on the inside of his ears, muzzle, hands and feet. He has black button eyes and a larger black nose and wears a bright green bow tie.",
-        price: "19", imageurl: 'https://beaniepedia.com/beanies/files/2015/10/clover-1.jpg?ezimgfmt=rs:180x180/rscb1/ng:webp/ngcb1'
       },
       {
         productname: "Ziggy the Zebra – Wide Stripes", description: "Ziggy is a white zebra covered in black stripes. He has black button eyes and a black yarn mane and tail. His inner ears are black.",
