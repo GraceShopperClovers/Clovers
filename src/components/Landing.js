@@ -59,7 +59,6 @@ function productMatches(products, text){
         <div id ='pageButton'>
         <PageButtons setPage ={setPage} page={page} products={products}/> 
         </div>
-        
         </>
        )
 }

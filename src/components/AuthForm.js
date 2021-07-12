@@ -6,13 +6,18 @@ function setUserEmail(email) {
   localStorage.setItem('useremail', email)
 }
 
-async function setOpenUserOrder(userid){
+async function setOpenUserOrder(props){
+  const {userid} = props
+  const patchData = {
+    user: userid
+  }
   try {
     const {data: [rows]} = await axios.get(`/api/orders/user/${userid}`)
     if (rows){
       setOrdernum(rows.ordernum)
-    } else {
-      localStorage.removeItem('ordernum')
+    } else if (localStorage.getItem('ordernum')){
+      const orderNum = localStorage.getItem('ordernum')
+      const updatedOrder = await axios.patch(`/api/orders/user/${orderNum}`, patchData)
     }
     return
   } catch (error) {
@@ -43,9 +48,10 @@ function AuthForm(props) {
           await setPassword('')
           await setUser(data.user)
           setUserEmail(data.user.email)
-          setOpenUserOrder(data.user.userid)
+          setOpenUserOrder(data.user)
           props.history.push('/home') // send it home
         }
+        console.log("USER INFO: ", data.user)
       } catch (error) {
         console.log(error)
       }
