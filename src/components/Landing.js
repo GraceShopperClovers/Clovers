@@ -56,8 +56,8 @@ function productMatches(products, text){
        ) : (
         < >
         <DisplayProduct products = {limmitedProducts} /> 
-        <div id='pageButton'>
-        <PageButtons setPage ={setPage} page={page} products={products} />
+        <div id ='pageButton'>
+        <PageButtons setPage ={setPage} page={page} products={products}/> 
         </div>
         </>
        )
